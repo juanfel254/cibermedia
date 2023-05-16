@@ -1,16 +1,19 @@
 :root {
+  --black: #000000;
   --white: #FFFFFF;
   --purple: #2D1A47;
   --yellow: #FEEA27;
+}
 
-  --dark-green: #49adaa;
-  --light-green: #9bfaf6;
-  --blue: #4972d7;
-  --light-blue: #779ad2;
+@font-face {
+  font-family: "Compress";
+  src: url("../asset/Compress/Compress.ttf");
 }
 
 body {
   margin: 0;
+  background-color: var(--purple);
+  color: var(--yellow);
 }
 
 ul, li {
@@ -26,9 +29,25 @@ ul, li {
 
 .my-link:hover {
   transition: 0.5s;
-  font-size: 18px;
+  font-weight: 800;
 }
 
-.my-link:visited {
+.my-link:visited, .my-link:link, .my-link:focus, .my-link:active {
   color: var(--black);
+}
+
+h1.main-title {
+  color: var(--yellow);
+  font-family: compress;
+  font-weight: 500;
+  font-size: 30px;
+  margin: 30px;
+}
+
+h1.error404-title {
+  text-align: center;
+  font-family: compress;
+  font-weight: 500;
+  font-size: 80px;
+  margin: 200px 0;
 }

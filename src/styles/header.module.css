@@ -4,10 +4,14 @@
   align-items: center;
   background-color: var(--yellow);
   padding: 12px 30px;
+  color: var(--purple);
 }
 
 .header h3 {
-  font-size: 10px;
+  font-family: Compress;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
   width: 50px;
   margin: 0;
 }
@@ -18,5 +22,9 @@
   flex-direction: row;
   width: 430px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
+}
+
+.home_logo:hover {
+  text-decoration: underline;
 }

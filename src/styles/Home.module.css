@@ -1,10 +1,5 @@
-.main {
+.main_container {
   margin: 0;
   padding: 0;
   background-color: var(--purple);
-}
-
-.main h1 {
-  margin: 0;
-  color: var(--yellow);
 }

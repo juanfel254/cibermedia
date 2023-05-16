@@ -1,16 +1,16 @@
 import Head from "next/head"
 
-export default function Artistas() {
+export default function Nosotros() {
   return (
     <>
       <Head>
-        <title>Artistas</title>
-        <meta name="description" content="Artistas que participaron en el curso" />
+        <title>Nosotros</title>
+        <meta name="description" content="Sobre los organizadores de narrando en multimedial" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="main-title">Artistas</h1>
+      <h1 className="main-title">Nosotros</h1>
     </>
   )
 }
