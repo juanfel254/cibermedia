@@ -3,25 +3,27 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--yellow);
-  padding: 12px 30px;
+  padding: 0px 60px;
   color: var(--purple);
+  height: 11.2vw;
 }
 
 .header h3 {
   font-family: Compress;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 22px;
+  font-size: 1.85vw;
+  line-height: 1.7vw;
   width: 50px;
   margin: 0;
+  color: var(--purple);
 }
 
 .header ul {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
-  width: 430px;
-  font-size: 16px;
+  width: 51%;
+  font-size: 1.5vw;
   font-weight: 500;
 }
 

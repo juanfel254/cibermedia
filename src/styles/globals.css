@@ -16,6 +16,10 @@ body {
   color: var(--yellow);
 }
 
+main {
+  padding: 40px 60px;
+}
+
 ul, li {
   margin: 0;
   padding: 0;
@@ -33,15 +37,15 @@ ul, li {
 }
 
 .my-link:visited, .my-link:link, .my-link:focus, .my-link:active {
-  color: var(--black);
+  color: var(--purple);
 }
 
 h1.main-title {
   color: var(--yellow);
   font-family: compress;
   font-weight: 500;
-  font-size: 30px;
-  margin: 30px;
+  font-size: 50px;
+  margin: 0 0 70px 0;
 }
 
 h1.error404-title {
@@ -50,4 +54,9 @@ h1.error404-title {
   font-weight: 500;
   font-size: 80px;
   margin: 200px 0;
+}
+
+.font-family-compress {
+  font-family: compress;
+  font-weight: 500;
 }
