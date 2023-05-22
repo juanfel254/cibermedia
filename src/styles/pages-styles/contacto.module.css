@@ -1,0 +1,73 @@
+.contactus_main_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.contactus_main_container .main_container_child {
+  width: 50%;
+}
+
+.contactus_main_container h1 {
+  margin: 0 0 40px 0;
+}
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.form_container input, .message_input {
+  font-size: 20px;
+  font-family: Rubik;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.message_input { 
+  resize: vertical; 
+  max-height: 300px; 
+  min-height: 150px; 
+}
+
+.submit_button {
+  font-family: compress;
+  background-color: var(--purple);
+  color: var(--yellow);
+  font-weight: 500;
+  border: 3px solid var(--yellow);
+  border-radius: 25px;
+  transition: 0.5s;
+}
+
+.submit_button:hover {
+  background-color: var(--yellow);
+  color: var(--purple);
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 600px) {
+  /* For mobile phones */
+  .contactus_main_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .contactus_main_container .main_container_child {
+    width: 100%;
+  }
+
+  .logo_container {
+    display: none;
+  }
+
+  .contactus_main_container h1 {
+    margin: 0 0 20px 0;
+  }
+
+  .form_container input, .message_input {
+    font-size: 16px;
+  }
+}

@@ -10,6 +10,10 @@
   src: url("../asset/Compress/Compress.ttf");
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background-color: var(--purple);
@@ -59,4 +63,10 @@ h1.error404-title {
 .font-family-compress {
   font-family: compress;
   font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    padding: 20px 40px;
+  }
 }
