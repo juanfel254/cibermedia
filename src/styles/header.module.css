@@ -30,3 +30,21 @@
 .home_logo:hover {
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 600px) {
+  /* For mobile phones */
+
+  .header {
+    padding: 0 20px;
+  }
+
+  .header h3 {
+    width: 44px;
+  }
+
+  .header ul {
+    width: 76%;
+    font-size: 3vw;
+  }
+
+}
