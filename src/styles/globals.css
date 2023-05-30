@@ -52,6 +52,15 @@ h1.main-title {
   margin: 0 0 70px 0;
 }
 
+h2.secondary-title {
+  color: var(--yellow);
+  font-family: compress;
+  font-weight: 500;
+  font-size: 30px;
+  margin: 0 0 70px 0;
+  text-align: center;
+}
+
 h1.error404-title {
   text-align: center;
   font-family: compress;
@@ -68,5 +77,8 @@ h1.error404-title {
 @media only screen and (max-width: 600px) {
   main {
     padding: 30px;
+  }
+  h1.main-title, h2.secondary-title {
+    margin: 0 0 30px 0;
   }
 }

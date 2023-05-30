@@ -20,10 +20,10 @@ export default function Contacto() {
                 <li><h1 className="main-title">¡Pongámonos en Contacto!</h1></li>
                 <li>
                   <form id="contactform" className={styles.form_container}>
-                    <input type="text" id="name" placeholder="¿Cuál es tu nombre?" className={styles.name_input} required="required" />
-                    <input type="email" id="name" placeholder="¿Cuál es tu correo electrónico?" className={styles.email_input} required="required" />
-                    <input type="text" id="subject" placeholder="¿Cuál es el asunto de tu mensaje?" className={styles.subject_input} required="required" />
-                    <textarea form="contactform" type="text" id="message" name="message" placeholder="¿Cómo podemos ayudarte?" className={styles.message_input} required="required" size="50"/>
+                    <input type="text" id="name" placeholder="¿Cuál es tu nombre?" className={styles.name_input} required="required" autoComplete="given-name"/>
+                    <input type="email" id="email" placeholder="¿Cuál es tu correo electrónico?" className={styles.email_input} required="required" autoComplete="email"/>
+                    <input type="text" id="subject" placeholder="¿Cuál es el asunto de tu mensaje?" className={styles.subject_input} required="required" autoComplete="off"/>
+                    <textarea form="contactform" type="text" id="message" name="message" placeholder="¿Cómo podemos ayudarte?" className={styles.message_input} required="required" size="50" autoComplete="off"/>
                     <input type="submit" id="submit-button" value="Enviar mensaje" className={`${styles.submit_button}`}/>
                   </form>
                 </li>

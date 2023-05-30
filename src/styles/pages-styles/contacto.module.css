@@ -42,6 +42,7 @@
 }
 
 .submit_button:hover {
+  cursor: pointer;
   background-color: var(--yellow);
   color: var(--purple);
   transition: 0.5s;
