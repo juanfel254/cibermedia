@@ -10,11 +10,11 @@
   color: var(--purple);
 }
 
-.footer .first_container .second_container {
+.first_container .second_container {
   font-weight: 500;
 }
 
-.footer .first_container .second_container h4 {
+.first_container .second_container h4 {
   margin: 0;
   padding: 0 0 10px 0;
   font-family: Compress;
@@ -22,14 +22,16 @@
   font-weight: 500;
 }
 
-.footer .logos_container {
+.logos_container {
   padding-bottom: 35px;
   margin: 0;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
-.footer .second_container .email_container {
+.second_container .email_container {
   padding-bottom: 10px;
 }

@@ -44,6 +44,11 @@ ul, li {
   color: var(--purple);
 }
 
+.header-logo {
+  width: 15vw;
+  height: 8vw;
+}
+
 .home-logo {
   width: 17vw;
   height: 17vw;
@@ -93,5 +98,8 @@ h1.error404-title {
   .home-logo {
     width: 37vw;
     height: 17vw;
+  }
+  .header-logo{
+    width: 8vw;
   }
 }

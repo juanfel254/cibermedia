@@ -20,7 +20,7 @@ export default function Home() {
           <div className={styles.created_by}>
             <h2>Creado Por</h2>
             <Image
-              src="/logotipo-cibermedia-blanco.svg"
+              src="/main-logos/logotipo-cibermedia-blanco.svg"
               width={200}
               height={120}
               alt="Logo del Colectivo Cultural Cibermedia"
@@ -33,7 +33,7 @@ export default function Home() {
             <ul className={styles.supported_by_logos}>
               <li>
                 <Image
-                  src="logotipo-la-bogota-que-estamos-construyendo.svg"
+                  src="/main-logos/logotipo-la-bogota-que-estamos-construyendo.svg"
                   width={200}
                   height={120}
                   alt="Logo de la Bogotá que estamos construyendo"
@@ -42,7 +42,7 @@ export default function Home() {
               </li>
               <li>
                 <Image
-                  src="/logo-kennedy-es-cultura-local.svg"
+                  src="/main-logos/logo-kennedy-es-cultura-local.svg"
                   width={200}
                   height={120}
                   alt="Logo de Kennedy es cultura local"
@@ -51,7 +51,7 @@ export default function Home() {
               </li>
               <li>
                 <Image
-                  src="/logotipo-les-lumiere-blanco.svg"
+                  src="/main-logos/logotipo-les-lumiere-blanco.svg"
                   width={200}
                   height={120}
                   alt="Logo de la Corporación Cultural Les Lumiere"
@@ -60,7 +60,7 @@ export default function Home() {
               </li>
               <li>
                 <Image
-                  src="/logotipo-nakuma-blanco.svg"
+                  src="/main-logos/logotipo-nakuma-blanco.svg"
                   width={200}
                   height={120}
                   alt="Logo de Nakuma Cultura Creativa"
@@ -68,6 +68,7 @@ export default function Home() {
                 />  
               </li>
             </ul>
+
           </div>
         </section>
 
