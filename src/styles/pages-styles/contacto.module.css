@@ -1,3 +1,14 @@
+.logo_container {
+  display: flex;
+  justify-content: center;
+}
+
+.main_logo {
+  width: 80%;
+  height: fit-content;
+  padding: 0px;
+}
+
 .contactus_main_container {
   display: flex;
   flex-direction: row;
@@ -48,6 +59,15 @@
   transition: 0.5s;
 }
 
+.logos_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 @media only screen and (max-width: 600px) {
   /* For mobile phones */
   .contactus_main_container {
@@ -58,10 +78,6 @@
 
   .contactus_main_container .main_container_child {
     width: 100%;
-  }
-
-  .logo_container {
-    display: none;
   }
 
   .contactus_main_container h1 {

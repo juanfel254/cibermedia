@@ -58,6 +58,11 @@ ul, li {
   height: 11vw;
 }
 
+.contact-logos {
+  width: 9vw;
+  height: 9vw;
+}
+
 h1.main-title {
   color: var(--yellow);
   font-family: compress;
@@ -101,5 +106,9 @@ h1.error404-title {
   }
   .header-logo{
     width: 8vw;
+  }
+  .contact-logos {
+    width: 17vw;
+    height: 17vw;
   }
 }
