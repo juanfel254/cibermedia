@@ -1,5 +1,23 @@
-.main_container {
+.multiple_logos_section {
   margin: 0;
   padding: 0;
   background-color: var(--purple);
+  text-align: center;
+  color: var(--white);
+}
+
+.created_by {
+  font-size: 18px;
+}
+
+.supported_by_container {
+  font-size: 12px;
+}
+
+.supported_by_logos {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

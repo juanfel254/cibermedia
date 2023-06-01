@@ -44,6 +44,15 @@ ul, li {
   color: var(--purple);
 }
 
+.home-logo {
+  width: 17vw;
+  height: 17vw;
+}
+
+.cibermedia-home-logo {
+  height: 11vw;
+}
+
 h1.main-title {
   color: var(--yellow);
   font-family: compress;
@@ -80,5 +89,9 @@ h1.error404-title {
   }
   h1.main-title, h2.secondary-title {
     margin: 0 0 30px 0;
+  }
+  .home-logo {
+    width: 37vw;
+    height: 17vw;
   }
 }

@@ -1,5 +1,6 @@
-import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -13,9 +14,63 @@ export default function Home() {
 
       <div className={styles.main_container}>
         <h1 className="main-title">Ciberespacio artístico de Kennedy</h1>
-        <section id='multiple-logos-section'>
+        
+        <section className={styles.multiple_logos_section}>
+          
+          <div className={styles.created_by}>
+            <h2>Creado Por</h2>
+            <Image
+              src="/logotipo-cibermedia-blanco.svg"
+              width={200}
+              height={120}
+              alt="Logo del Colectivo Cultural Cibermedia"
+              className="home-logo cibermedia-home-logo"
+            />
+          </div>
 
-        </section>        
+          <div className={styles.supported_by_container}>
+            <h2>Con el apoyo de</h2>
+            <ul className={styles.supported_by_logos}>
+              <li>
+                <Image
+                  src="logotipo-la-bogota-que-estamos-construyendo.svg"
+                  width={200}
+                  height={120}
+                  alt="Logo de la Bogotá que estamos construyendo"
+                  className="home-logo"
+                />  
+              </li>
+              <li>
+                <Image
+                  src="/logo-kennedy-es-cultura-local.svg"
+                  width={200}
+                  height={120}
+                  alt="Logo de Kennedy es cultura local"
+                  className="home-logo"
+                />  
+              </li>
+              <li>
+                <Image
+                  src="/logotipo-les-lumiere-blanco.svg"
+                  width={200}
+                  height={120}
+                  alt="Logo de la Corporación Cultural Les Lumiere"
+                  className="home-logo"
+                />  
+              </li>
+              <li>
+                <Image
+                  src="/logotipo-nakuma-blanco.svg"
+                  width={200}
+                  height={120}
+                  alt="Logo de Nakuma Cultura Creativa"
+                  className="home-logo"
+                />  
+              </li>
+            </ul>
+          </div>
+        </section>
+
       </div>
     </>
   )
