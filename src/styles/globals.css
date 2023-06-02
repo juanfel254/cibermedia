@@ -22,6 +22,7 @@ body {
 
 main {
   padding: 40px 60px;
+  background-image: url("/backgrounds/yellow-stars.png");
 }
 
 ul, li {
