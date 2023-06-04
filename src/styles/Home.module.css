@@ -1,9 +1,13 @@
 .multiple_logos_section {
-  margin: 0;
+  margin: 70px 0px;
   padding: 0;
-  background-color: var(--purple);
   text-align: center;
   color: var(--white);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .created_by {
@@ -12,6 +16,11 @@
 
 .supported_by_container {
   font-size: 12px;
+}
+
+.created_by, .supported_by_container {
+  background-color: var(--purple);
+  width: 100%;
 }
 
 .supported_by_logos {
