@@ -1,11 +1,9 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Map from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import KennedyMap from '@/components/kennedyMap/kennedyMap';
 import styles from '@/styles/Home.module.css';
 
 export default function Home() {
-  const mapboxToken = "pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tbzJydGt4NXZ1In0.WkzTOoZyMsPBNymYAJzCdw"
 
   return (
     <>
@@ -18,15 +16,8 @@ export default function Home() {
 
       <div className={styles.main_container}>
         <h1 className="main-title">Ciberespacio artístico de Kennedy</h1>
-        
-        <Map
-          mapboxAccessToken={mapboxToken}
-          mapStyle="mapbox://styles/mapbox/streets-v12"
-          style={{ width: "100%", height: "500px" }}
-          initialViewState={{ latitude: 4.6299331, longitude: -74.1725814, zoom: 12 }}
-          maxZoom={20}
-          minZoom={3}
-        ></Map>
+
+        <KennedyMap />
 
         <section className={styles.multiple_logos_section}>
           
