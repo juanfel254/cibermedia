@@ -31,7 +31,9 @@ export default function KennedyMap() {
         maxZoom: zoom + 0.75,
         minZoom: zoom,
         maxBounds: bounds,
+        interactive: false
       });
+      map.current.dragPan.disable();
     //map.current.addControl(new mapboxgl.NavigationControl());
     });
 
@@ -42,17 +44,18 @@ export default function KennedyMap() {
       map.current.setZoom(11.6)
       map.current.setMinZoom(11.6);
       map.current.setMaxZoom(12.60);
+      console.log("Siuu")
     }
   }, []);
   
 
-useEffect(()=> {
-  map.current.on('move', () => { // get map details
-    setLng(map.current.getCenter().lng.toFixed(4));
-    setLat(map.current.getCenter().lat.toFixed(4));
-    setZoom(map.current.getZoom().toFixed(2));
-  }); 
-})
+  useEffect(()=> {
+    map.current.on('move', () => { // get map details
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    }); 
+  });
 
   return (
     <div>
