@@ -20,7 +20,7 @@ export default function Nosotros() {
             <p className={styles.picture_container}>Foto</p>
           </li>
           <li className={styles.card_child}>
-            <ul>
+            <ul className={styles.team_description_container}>
               <li><h3 className={`font-family-compress ${styles.artist_name}`}>Colectivo Cultural Cibermedia</h3></li>
               <li><p className={styles.artist_description}>Sinopsis</p></li>
             </ul>

@@ -8,6 +8,7 @@
 
 .card_container {
   color: var(--yellow);
+  background-color: var(--purple);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -46,6 +47,10 @@
   background-color: var(--white);
   color: black;
   font-weight: 600;
+}
+
+.team_description_container {
+  background-color: var(--purple);
 }
 
 @media only screen and (max-width: 600px) {
