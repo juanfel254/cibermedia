@@ -68,8 +68,9 @@ h1.main-title {
   color: var(--yellow);
   font-family: compress;
   font-weight: 500;
-  font-size: 50px;
+  font-size: 6.2vw;
   margin: 0 0 70px 0;
+  text-align: center;
 }
 
 h2.secondary-title {
