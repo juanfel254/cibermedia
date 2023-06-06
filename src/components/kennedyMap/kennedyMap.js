@@ -5,46 +5,54 @@ import styles from "@/styles/kennedyMap/kennedyMap.module.css"
 mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tbzJydGt4NXZ1In0.WkzTOoZyMsPBNymYAJzCdw';
 
 export default function KennedyMap() {
+  const lngKennedy = -74.1531818;
+  const latKennedy = 4.6299322;
+  const initialZoom = 12.25;
+  const boundNum = 0.0355;
+
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-74.1531818);
-  const [lat, setLat] = useState(4.6299322);
-  const [zoom, setZoom] = useState(12.25);
+  const [lng, setLng] = useState(lngKennedy);
+  const [lat, setLat] = useState(latKennedy);
+  const [zoom, setZoom] = useState(initialZoom);
   const bounds = [
-    [-74.04728, 40.68392], // [west, south]
-    [-73.91058, 40.87764]  // [east, north]
+    [lngKennedy - boundNum, latKennedy - boundNum], // [west, south]
+    [lngKennedy + boundNum, latKennedy + boundNum]  // [east, north]
     ];
-    
+  
+
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) return; // initialize map only once    
     map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        //style: 'mapbox://styles/juanfel254/clijtxv4900ug01pddglfckk8',
         style: 'mapbox://styles/juanfel254/clijutcu700v001p71axde6d0',
         center: [lng, lat],
-        zoom: zoom
+        zoom: zoom,
+        maxZoom: zoom + 0.75,
+        minZoom: zoom,
+        maxBounds: bounds,
       });
-    
-    map.current.setMinZoom(zoom);
-    map.current.setMaxZoom(13);
     //map.current.addControl(new mapboxgl.NavigationControl());
     });
 
 
   useEffect(() => {
     if (!map.current) return; // wait for map to initialize
-
-/*       map.current.on('zoom', () => {
-        map.current.setZoom(zoom);
-      })
- */
-      map.current.on('move', () => {
-        setLng(map.current.getCenter().lng.toFixed(4));
-        setLat(map.current.getCenter().lat.toFixed(4));
-        setZoom(map.current.getZoom().toFixed(2));
-      });
-  });
+    if (window.innerWidth < 600){ // change default zoom for mobile screen
+      map.current.setZoom(11.6)
+      map.current.setMinZoom(11.6);
+      map.current.setMaxZoom(12.60);
+    }
+  }, []);
   
+
+useEffect(()=> {
+  map.current.on('move', () => { // get map details
+    setLng(map.current.getCenter().lng.toFixed(4));
+    setLat(map.current.getCenter().lat.toFixed(4));
+    setZoom(map.current.getZoom().toFixed(2));
+  }); 
+})
 
   return (
     <div>
