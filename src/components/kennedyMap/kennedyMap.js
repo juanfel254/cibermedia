@@ -19,7 +19,6 @@ export default function KennedyMap() {
     [lngKennedy - boundNum, latKennedy - boundNum], // [west, south]
     [lngKennedy + boundNum, latKennedy + boundNum]  // [east, north]
     ];
-  
 
   useEffect(() => {
     if (map.current) return; // initialize map only once    
@@ -31,7 +30,72 @@ export default function KennedyMap() {
         maxZoom: zoom + 0.75,
         minZoom: zoom,
         maxBounds: bounds,
+        interactive: false
       });
+    
+    let hoveredPolygonId = null;
+
+    map.current.on('load', ()=> {
+      map.current.addSource("UPZs", {
+//        type: 'geojson',
+//        data: 'mapbox://tileset-source/juanfel254/poblacion-upz-bogota-226tbc-data'
+        
+        type: "vector",
+        url: "mapbox://juanfel254.2kz2c2tp"
+      });
+      map.current.addLayer({
+        "id": "UPZs-fills",
+        "type": "fill",
+        "source": "UPZs", 
+        "source-layer": "poblacion-upz-bogota-226tbc",
+        "layout": {},
+        "paint": {
+          "fill-color": "#FEEA27",
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            0.8,
+            0.1
+            ]
+        }
+      });
+    });
+
+// When the user moves their mouse over the state-fill layer, we'll update the
+// feature state for the feature under the mouse.
+    map.current.on('mousemove', 'UPZs-fills', (e) => {
+      if (e.features.length > 0) {
+        if (hoveredPolygonId !== null) {
+          map.current.setFeatureState({ 
+            source: 'UPZs', 
+            sourceLayer: "poblacion-upz-bogota-226tbc",
+            id: hoveredPolygonId },
+          { hover: false });
+        }
+        hoveredPolygonId = e.features[0].id;
+        map.current.setFeatureState({ 
+          source: 'UPZs',
+          sourceLayer: "poblacion-upz-bogota-226tbc",
+          id: hoveredPolygonId 
+        },
+          { hover: true });
+        }
+      });
+    
+    map.current.on('mouseleave', 'UPZs-fills', () => {
+      if (hoveredPolygonId !== null) {
+        map.current.setFeatureState({ 
+          source: 'UPZs', 
+          sourceLayer: "poblacion-upz-bogota-226tbc",
+          id: hoveredPolygonId 
+        },
+        { hover: false }
+        );
+      }
+      hoveredPolygonId = null;
+      });
+
+    map.current.dragPan.disable();
     //map.current.addControl(new mapboxgl.NavigationControl());
     });
 
@@ -42,17 +106,18 @@ export default function KennedyMap() {
       map.current.setZoom(11.6)
       map.current.setMinZoom(11.6);
       map.current.setMaxZoom(12.60);
-    }
+      console.log("Siuu")
+    }  
   }, []);
   
 
-useEffect(()=> {
-  map.current.on('move', () => { // get map details
-    setLng(map.current.getCenter().lng.toFixed(4));
-    setLat(map.current.getCenter().lat.toFixed(4));
-    setZoom(map.current.getZoom().toFixed(2));
-  }); 
-})
+  useEffect(()=> {
+    map.current.on('move', () => { // get map details
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    }); 
+  });
 
   return (
     <div>
