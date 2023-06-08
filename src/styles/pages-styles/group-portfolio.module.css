@@ -1,0 +1,52 @@
+.portfolio_container {
+  display: flex;
+  flex-direction: row;
+  background-image: none;
+  padding: 0;
+}
+
+.group_desc_container, .projects_container li {
+  padding: 20px;
+}
+
+.projects_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 66%;
+}
+
+.visual_project_container {
+  background-color: var(--purple);
+}
+
+.sound_project_container {
+  background-color: var(--black);
+}
+
+.group_name, .visual_title, .sound_title {
+  font-family: compress;
+  font-weight: 500;
+  font-size: 30px;
+  margin: 0 0 20px 0;
+}
+
+.group_desc_container {
+  background-color: var(--yellow);
+  color: var(--purple);
+  width: 34%;
+}
+
+.sound_desc {
+  margin-bottom: 0;
+}
+
+.group_desc, .visual_desc, .sound_desc {
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+  .portfolio_container {
+    padding: 0; 
+  }
+}

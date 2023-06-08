@@ -20,9 +20,9 @@ body {
   color: var(--yellow);
 }
 
-main {
-  padding: 40px 60px;
+.main-container{
   background-image: url("/backgrounds/yellow-stars.png");
+  padding: 40px 60px;
 }
 
 ul, li {
@@ -96,7 +96,7 @@ h1.error404-title {
 }
 
 @media only screen and (max-width: 600px) {
-  main {
+  .main-container {
     padding: 30px;
   }
   h1.main-title, h2.secondary-title {
