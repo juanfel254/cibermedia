@@ -12,7 +12,7 @@ export default function Contacto() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
+      <div className="main-container">
         <ul className={styles.contactus_main_container}>
           <li className={`${styles.main_container_child} ${styles.logo_container}`}>
             <Image

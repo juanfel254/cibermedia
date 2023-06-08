@@ -46,6 +46,17 @@
   text-align: center;
 }
 
+.card_link {
+  text-decoration: none;
+  color: var(--purple);
+  transition: 0.5s;
+}
+
+.card_link:hover {
+  text-decoration:underline;
+  color: var(--white);
+}
+
 @media only screen and (max-width: 600px) {
   .cards_container {
     flex-direction: column;
@@ -57,7 +68,6 @@
   .card_container {
     border-radius: 18vw 0 18vw 0;
   }
-
   .picture_container {
     width: 42%;
     height: 32vw;

@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.main_container}>
+      <div className="main-container">
         <h1 className="main-title">Ciberespacio artístico de Kennedy</h1>
 
         <KennedyMap />
