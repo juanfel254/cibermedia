@@ -1,7 +1,8 @@
 .map_container {
-  height: 500px;
-  width: 500px;
+  height: 550px;
+  width: 550px;
   margin: 0 auto;
+  border-radius: 50%;
 }
 
 .sidebar {
@@ -17,7 +18,8 @@
 
 @media only screen and (max-width: 600px) {
   .map_container {
-    width: 315px;
-    height: 315px;
+    width: 325px;
+    height: 325px;
+    border-radius: 45%;
   }
 }

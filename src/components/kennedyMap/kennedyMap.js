@@ -7,7 +7,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tb
 export default function KennedyMap() {
   const lngKennedy = -74.1531818;
   const latKennedy = 4.6299322;
-  const initialZoom = 12.25;
+  const initialZoom = 12.28;
   const boundNum = 0.0355;
 
   const mapContainer = useRef(null);
