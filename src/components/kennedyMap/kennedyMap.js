@@ -45,14 +45,10 @@ export default function KennedyMap() {
     map.current.on('load', ()=> {
       map.current.addSource("UPZs", {
         type: 'geojson',
-        data: '/upzs-kennedy.geojson'
-//        data: '/GeoJSON.json'
-//        data: "/upzs-kennedy.csv"
-//        data: "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=poblacion-upz-bogota&q=&facet=nomb_loc&refine.nomb_loc=KENNEDY"
-//        data: 'mapbox://tileset-source/juanfel254/poblacion-upz-bogota-226tbc-data'        
-//        type: "vector",
-//        url: "mapbox://juanfel254.2kz2c2tp"
+        data: '/upzs-kennedy.geojson',
+        generateId: true
       });
+      
       map.current.addLayer({
         "id": "UPZs-fills",
         "type": "fill",
@@ -78,14 +74,12 @@ export default function KennedyMap() {
         if (hoveredPolygonId !== null) {
           map.current.setFeatureState({ 
             source: 'UPZs', 
-//            sourceLayer: "poblacion-upz-bogota-226tbc",
             id: hoveredPolygonId },
           { hover: false });
         }
         hoveredPolygonId = e.features[0].id;
         map.current.setFeatureState({ 
           source: 'UPZs',
-//          sourceLayer: "poblacion-upz-bogota-226tbc",
           id: hoveredPolygonId 
         },
           { hover: true });
@@ -96,7 +90,6 @@ export default function KennedyMap() {
       if (hoveredPolygonId !== null) {
         map.current.setFeatureState({ 
           source: 'UPZs', 
-//          sourceLayer: "poblacion-upz-bogota-226tbc",
           id: hoveredPolygonId 
         },
         { hover: false }
