@@ -33,6 +33,13 @@ export default function KennedyMap() {
         interactive: false
       });
     
+    if (window.innerWidth < 600){ // change default zoom for mobile screen
+      map.current.setZoom(11.6)
+/*       map.current.setMinZoom(11.6);
+      map.current.setMaxZoom(12.60); */
+      console.log("Siuu")
+    }  
+
     let hoveredPolygonId = null;
 
     map.current.on('load', ()=> {
@@ -62,14 +69,6 @@ export default function KennedyMap() {
             ]
         }
       });
-
-      if (window.innerWidth < 600){ // change default zoom for mobile screen
-        map.current.setZoom(11.6)
-  /*       map.current.setMinZoom(11.6);
-        map.current.setMaxZoom(12.60); */
-        console.log("Siuu")
-      }  
-
     });
 
 // When the user moves their mouse over the state-fill layer, we'll update the
