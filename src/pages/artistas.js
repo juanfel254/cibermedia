@@ -16,7 +16,6 @@ export default function Artistas() {
           <ArtistsCardsA/>
         </section>
       </div>
-
     </>
   )
 }

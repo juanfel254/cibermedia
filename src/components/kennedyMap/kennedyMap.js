@@ -27,9 +27,9 @@ export default function KennedyMap() {
         style: 'mapbox://styles/juanfel254/clijutcu700v001p71axde6d0',
         center: [lng, lat],
         zoom: zoom,
-        maxZoom: zoom + 0.75,
+/*         maxZoom: zoom + 0.75,
         minZoom: zoom,
-        maxBounds: bounds,
+        maxBounds: bounds, */
         interactive: false
       });
     
@@ -37,17 +37,20 @@ export default function KennedyMap() {
 
     map.current.on('load', ()=> {
       map.current.addSource("UPZs", {
-//        type: 'geojson',
-//        data: 'mapbox://tileset-source/juanfel254/poblacion-upz-bogota-226tbc-data'
-        
-        type: "vector",
-        url: "mapbox://juanfel254.2kz2c2tp"
+        type: 'geojson',
+        data: '/upzs-kennedy.geojson'
+//        data: '/GeoJSON.json'
+//        data: "/upzs-kennedy.csv"
+//        data: "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=poblacion-upz-bogota&q=&facet=nomb_loc&refine.nomb_loc=KENNEDY"
+//        data: 'mapbox://tileset-source/juanfel254/poblacion-upz-bogota-226tbc-data'        
+//        type: "vector",
+//        url: "mapbox://juanfel254.2kz2c2tp"
       });
       map.current.addLayer({
         "id": "UPZs-fills",
         "type": "fill",
         "source": "UPZs", 
-        "source-layer": "poblacion-upz-bogota-226tbc",
+//        "source-layer": "poblacion-upz-bogota-226tbc",
         "layout": {},
         "paint": {
           "fill-color": "#FEEA27",
@@ -59,6 +62,14 @@ export default function KennedyMap() {
             ]
         }
       });
+
+      if (window.innerWidth < 600){ // change default zoom for mobile screen
+        map.current.setZoom(11.6)
+  /*       map.current.setMinZoom(11.6);
+        map.current.setMaxZoom(12.60); */
+        console.log("Siuu")
+      }  
+
     });
 
 // When the user moves their mouse over the state-fill layer, we'll update the
@@ -68,14 +79,14 @@ export default function KennedyMap() {
         if (hoveredPolygonId !== null) {
           map.current.setFeatureState({ 
             source: 'UPZs', 
-            sourceLayer: "poblacion-upz-bogota-226tbc",
+//            sourceLayer: "poblacion-upz-bogota-226tbc",
             id: hoveredPolygonId },
           { hover: false });
         }
         hoveredPolygonId = e.features[0].id;
         map.current.setFeatureState({ 
           source: 'UPZs',
-          sourceLayer: "poblacion-upz-bogota-226tbc",
+//          sourceLayer: "poblacion-upz-bogota-226tbc",
           id: hoveredPolygonId 
         },
           { hover: true });
@@ -86,7 +97,7 @@ export default function KennedyMap() {
       if (hoveredPolygonId !== null) {
         map.current.setFeatureState({ 
           source: 'UPZs', 
-          sourceLayer: "poblacion-upz-bogota-226tbc",
+//          sourceLayer: "poblacion-upz-bogota-226tbc",
           id: hoveredPolygonId 
         },
         { hover: false }
@@ -95,12 +106,12 @@ export default function KennedyMap() {
       hoveredPolygonId = null;
       });
 
-    map.current.dragPan.disable();
+    //map.current.dragPan.disable();
     //map.current.addControl(new mapboxgl.NavigationControl());
     });
 
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (!map.current) return; // wait for map to initialize
     if (window.innerWidth < 600){ // change default zoom for mobile screen
       map.current.setZoom(11.6)
@@ -108,7 +119,7 @@ export default function KennedyMap() {
       map.current.setMaxZoom(12.60);
       console.log("Siuu")
     }  
-  }, []);
+  }, []); */
   
 
   useEffect(()=> {
