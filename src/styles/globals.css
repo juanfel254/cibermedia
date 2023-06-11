@@ -95,6 +95,17 @@ h1.error404-title {
   font-weight: 500;
 }
 
+.mapboxgl-popup-content {
+  background-color: var(--purple);
+  padding: 2px 12px;
+  border-radius: 13px;
+}
+
+.mapboxgl-popup-close-button {
+  color: var(--white);
+  font-size: 18px;
+}
+
 @media only screen and (max-width: 600px) {
   .main-container {
     padding: 30px;
