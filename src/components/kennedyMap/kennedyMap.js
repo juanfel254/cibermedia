@@ -26,13 +26,23 @@ export default function KennedyMap() {
       interactive: false
     });
 
-    if (window.innerWidth < 600) {
-      // change default zoom for mobile screen
-      map.current.setZoom(11.6);
-    }
+    if (window.innerWidth < 600){ // change default zoom for mobile screen
+      map.current.setZoom(11.6)
+      console.log("Siuu")
+    }  
+
+    map.current.on('style.load', () => {
+      // Establecer la rotación inicial del mapa
+      map.current.setBearing(0);
+
+      // Establecer la inclinación vertical del mapa
+      map.current.setPitch(50);
+
+      // Iniciar la rotación continua del mapa
+      rotateMap();
+    });
 
     let hoveredPolygonId = null;
-    let clickedPolygonId = null;
 
     map.current.on('load', () => {
       map.current.addSource('UPZs', {
@@ -47,32 +57,32 @@ export default function KennedyMap() {
         source: 'UPZs',
         layout: {},
         paint: {
-          'fill-color': [
-            'case',
-            ['boolean', ['feature-state', 'hover'], false],
-            '#FEEA27',
-            ['boolean', ['feature-state', 'click'], false],
-            '#FEEA27',
-            '#000000'
-          ],
+          'fill-color': '#FEEA27',
           'fill-opacity': [
             'case',
-            ['boolean', ['feature-state', 'click'], false],
+            ['boolean', ['feature-state', 'hover'], false],
             0.8,
-            [
-              'case',
-              ['boolean', ['feature-state', 'hover'], false],
-              0.2,
-              0.1
-            ]
+            0.1
           ]
+        }
+      });
+
+      map.current.addLayer({
+        id: 'UPZs-outlines',
+        type: 'line',
+        source: 'UPZs',
+        layout: {},
+        paint: {
+          'line-color': '#FEEA27',
+          'line-blur': 20,
+          'line-width': 5
         }
       });
     });
 
     map.current.on('mousemove', 'UPZs-fills', (e) => {
       if (e.features.length > 0) {
-        if (hoveredPolygonId !== null && !clickedPolygonId) {
+        if (hoveredPolygonId !== null) {
           map.current.setFeatureState(
             { source: 'UPZs', id: hoveredPolygonId },
             { hover: false }
@@ -88,38 +98,18 @@ export default function KennedyMap() {
 
     map.current.on('click', 'UPZs-fills', (e) => {
       if (e.features.length > 0) {
-        const clickedFeatureId = e.features[0].id;
+        const feature = e.features[0];
         const coordinates = e.lngLat;
-
-        if (clickedPolygonId !== clickedFeatureId) {
-          if (clickedPolygonId !== null) {
-            map.current.setFeatureState(
-              { source: 'UPZs', id: clickedPolygonId },
-              { click: false }
-            );
-          }
-          clickedPolygonId = clickedFeatureId;
-          map.current.setFeatureState(
-            { source: 'UPZs', id: clickedPolygonId },
-            { click: true }
-          );
-        } else {
-          map.current.setFeatureState(
-            { source: 'UPZs', id: clickedPolygonId },
-            { click: false }
-          );
-          clickedPolygonId = null;
-        }
-
+        console.log(feature);
         new mapboxgl.Popup({ backgroundColor: '#2D1A47' })
           .setLngLat(coordinates)
-          .setHTML(`<h2 className="secondary-title">${e.features[0].properties.nom_upz}</h2>`)
+          .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
           .addTo(map.current);
       }
     });
 
     map.current.on('mouseleave', 'UPZs-fills', () => {
-      if (hoveredPolygonId !== null && !clickedPolygonId) {
+      if (hoveredPolygonId !== null) {
         map.current.setFeatureState(
           { source: 'UPZs', id: hoveredPolygonId },
           { hover: false }
@@ -128,6 +118,17 @@ export default function KennedyMap() {
       hoveredPolygonId = null;
     });
   }, [lng, lat, zoom]);
+
+  function rotateMap() {
+    const rotationSpeed = 20; // Velocidad de rotación en grados por frame
+
+    function animate() {
+      requestAnimationFrame(animate);
+      map.current.easeTo({ bearing: map.current.getBearing() + rotationSpeed });
+    }
+
+    animate();
+  }
 
   return (
     <div>
