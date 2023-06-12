@@ -3,7 +3,6 @@ import Link from "next/link";
 import styles from "@/styles/footer.module.css";
 import { Rubik } from 'next/font/google';
 
-
 const rubik = Rubik({ subsets: ['latin'] });
 
 export default function Footer () {
