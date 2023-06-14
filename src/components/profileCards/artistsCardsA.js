@@ -3,6 +3,7 @@ import styles from "@/styles/profileCards/artistCardA.module.css"
 
 export default function ArtistsCardsA() {
   const artists = ["artista1", "artista2", "artista3", "artista4", "artista5", "artista6"];
+
   return (
     <ul className={styles.cards_container}>
       {artists.map((artist, index) => (

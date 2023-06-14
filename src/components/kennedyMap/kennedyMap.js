@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import ReactDOM from 'react-dom';
+import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
 import styles from '@/styles/kennedyMap/kennedyMap.module.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tbzJydGt4NXZ1In0.WkzTOoZyMsPBNymYAJzCdw';
@@ -28,7 +30,6 @@ export default function KennedyMap() {
 
     if (window.innerWidth < 600){ // change default zoom for mobile screen
       map.current.setZoom(11.6)
-      console.log("Siuu")
     }  
 
     map.current.on('style.load', () => {
@@ -100,10 +101,16 @@ export default function KennedyMap() {
       if (e.features.length > 0) {
         const feature = e.features[0];
         const coordinates = e.lngLat;
-        console.log(feature);
+    
+        const container = document.createElement('section')
+        const popupContent = document.createElement('div');
+        container.innerHTML = `<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`;
+        ReactDOM.render(<ArtistsCardsA popup="true" />, popupContent);
+        container.appendChild(popupContent)
+
         new mapboxgl.Popup({ backgroundColor: '#2D1A47' })
           .setLngLat(coordinates)
-          .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
+          .setDOMContent(container)
           .addTo(map.current);
       }
     });
@@ -132,9 +139,6 @@ export default function KennedyMap() {
 
   return (
     <div>
-      <div className={styles.sidebar}>
-        Longitud: {lng} | Latitud: {lat} | Zoom: {zoom}
-      </div>
       <div ref={mapContainer} className={styles.map_container} />
     </div>
   );
