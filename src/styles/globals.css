@@ -312,12 +312,12 @@ Burger king
 ==================================== */
 
 .open-overlay {
-  position: relative;
+  position: absolute;
   z-index: 100;
   width: 34px;
   display: block;
   cursor: pointer;
-  left: 83vw;
+  margin-left: 93vw;
 }
 
 .open-overlay span {
@@ -482,7 +482,13 @@ Animation keyframes
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1100px) {
+  .open-overlay {
+    margin-left: 86vw;
+  }
+}
+
+@media only screen and (max-width: 640px) {
   .main-container {
     padding: 30px;
   }
@@ -501,6 +507,9 @@ Animation keyframes
     width: 17vw;
     height: 17vw;
   }
+  .open-overlay {
+    margin-left: 76vw;
+  }
   nav ul {
     flex-direction: column;
   }
@@ -513,4 +522,5 @@ Animation keyframes
   nav li a:before {
     width: 15px;
   }
+
 }
