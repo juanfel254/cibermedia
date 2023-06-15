@@ -32,7 +32,7 @@ export default function Header() {
                 }
                 key={`menuitem-${index}`}
               >
-                <Link href={`${item.link}`} data-content={item.content}>
+                <Link href={`${item.link}`} data-content={item.content} onClick={handleOverlayClick}>
                   {item.label}
                 </Link>
               </li>
