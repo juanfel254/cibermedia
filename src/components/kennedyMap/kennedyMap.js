@@ -9,7 +9,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tb
 export default function KennedyMap() {
   const lngKennedy = -74.1531818;
   const latKennedy = 4.6299322;
-  const initialZoom = 12.28;
+  const initialZoom = 12.7;
 
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -37,7 +37,7 @@ export default function KennedyMap() {
       map.current.setBearing(0);
 
       // Establecer la inclinación vertical del mapa
-      map.current.setPitch(50);
+      map.current.setPitch(0);
 
       // Iniciar la rotación continua del mapa
       rotateMap();
@@ -127,7 +127,7 @@ export default function KennedyMap() {
   }, [lng, lat, zoom]);
 
   function rotateMap() {
-    const rotationSpeed = 20; // Velocidad de rotación en grados por frame
+    const rotationSpeed = 10; // Velocidad de rotación en grados por frame
 
     function animate() {
       requestAnimationFrame(animate);
