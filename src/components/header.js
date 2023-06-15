@@ -5,9 +5,9 @@ import Image from 'next/image';
 
 const menuItems = [
   { label: "Mapa", content: "¡Aquí estamos!", link: "/" },
-  { label: "Artistas", content: "Lo que hemos logrado", link: "/artistas" },
+  { label: "Artistas", content: "Los que somos", link: "/artistas" },
   { label: "Nosotros", content: "¿Quiénes somos?", link: "/nosotros" },
-  { label: "Contacto", content: "Te escuchamos", link: "/contacto" }
+  { label: "Únete", content: "Únetenos", link: "/contacto" }
 ];
 
 export default function Header() {

@@ -17,13 +17,24 @@
 
 body {
   margin: 0;
-  background-color: var(--purple);
   color: var(--yellow);
 }
 
+main {
+  position: relative;
+}
+
 .main-container{
-  background-image: url("/backgrounds/yellow-stars.png");
   padding: 40px 60px;
+}
+
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }
 
 ul, li {
