@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import ReactDOM from 'react-dom';
 import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
 import styles from '@/styles/kennedyMap/kennedyMap.module.css';
 
@@ -101,16 +100,10 @@ export default function KennedyMap() {
       if (e.features.length > 0) {
         const feature = e.features[0];
         const coordinates = e.lngLat;
-    
-        const container = document.createElement('section')
-        const popupContent = document.createElement('div');
-        container.innerHTML = `<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`;
-        ReactDOM.render(<ArtistsCardsA popup="true" />, popupContent);
-        container.appendChild(popupContent)
-
+        console.log(feature);
         new mapboxgl.Popup({ backgroundColor: '#2D1A47' })
           .setLngLat(coordinates)
-          .setDOMContent(container)
+          .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
           .addTo(map.current);
       }
     });
@@ -127,7 +120,7 @@ export default function KennedyMap() {
   }, [lng, lat, zoom]);
 
   function rotateMap() {
-    const rotationSpeed = 10; // Velocidad de rotación en grados por frame
+    const rotationSpeed = 5; // Velocidad de rotación en grados por frame
 
     function animate() {
       requestAnimationFrame(animate);
