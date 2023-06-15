@@ -5,7 +5,7 @@ export default function GroupPortfolio(){
   return (
     <>
       <Head>
-        <title>Portafolio Grupal</title>
+        <title>Portafolio Personal</title>
         <meta name="description" content="Información individual del artista" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -14,7 +14,7 @@ export default function GroupPortfolio(){
       <div className={`${styles.portfolio_container} main-container`}>
         <section className={styles.group_desc_container}>
           <h2 className={styles.group_name}>
-            Nombre del grupo - Integrantes
+            Nombre del Artista - Perfil o Enfoque
           </h2>
           <p className={styles.group_desc}>
             Tempor nisi incididunt proident cillum enim elit consectetur ad adipisicing do Lorem. Dolore aliquip ipsum labore incididunt pariatur ea duis laborum esse excepteur minim dolore do aliquip. Velit aliquip consequat minim non elit sint veniam cupidatat exercitation elit pariatur labore quis. Tempor incididunt occaecat esse culpa commodo id esse. Qui ea culpa et laboris culpa aute deserunt in. Aute occaecat anim culpa in culpa reprehenderit aute incididunt.

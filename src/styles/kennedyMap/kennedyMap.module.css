@@ -1,8 +1,8 @@
 .map_container {
-  height: 550px;
-  width: 550px;
+  height: 750px;
+  width: 750px;
   margin: 0 auto;
-  border-radius: 50%;
+  border-radius: 60%;
 }
 
 .sidebar {
