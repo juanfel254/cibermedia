@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head"
+import Image from "next/image"
 import styles from "@/styles/pages-styles/artista.module.css"
 
 export const getStaticPaths = async () => {
@@ -32,13 +33,11 @@ function useSalvacion(htmlString, myQuery) {
   const [element, setElement] = useState(null)
 
   useEffect(() => {
-    if (!htmlString) return("Cargando");
-    else {
-      if(typeof document !== 'undefined') {
-        var e = document.createElement('div');
-        e.innerHTML = htmlString;
-        setElement(e);
-      }
+    if(!window) return;
+    if (htmlString && typeof document !== 'undefined') {
+      var e = document.createElement('div');
+      e.innerHTML = htmlString;
+      setElement(e);
     }
   }, [htmlString]);
   
@@ -53,7 +52,7 @@ function useSalvacion(htmlString, myQuery) {
 }
 
 export default function ArtistaIndv({ artista }){
-  const { element, getByClassName, querySelector, getDetails, getText, getByTagName } = useSalvacion(artista.content.rendered);
+  const { getByClassName, querySelector, getDetails, getText, getByTagName } = useSalvacion(artista.content.rendered);
   const info = {
     imgSrc: getDetails(querySelector("img"), 'src'),
     description: getText(getByClassName("descripcion-artista")),
@@ -65,7 +64,7 @@ export default function ArtistaIndv({ artista }){
       audioDescription: getText(getByClassName("sinopsis-audio")),
     },
   }
-
+console.log("test",info.project.audioSrc)
   return (
     <>
       <Head>
@@ -102,7 +101,9 @@ export default function ArtistaIndv({ artista }){
             </p>
           </li>
           <li className={styles.sound_project_container}>
-            
+            {info.project.audioSrc && <audio controls  >  
+              <source src={info.project.audioSrc}/>
+            </audio>}
             <p className={styles.sound_desc}>
               {info.project.audioDescription}
             </p>
