@@ -1,8 +1,34 @@
 import Image from "next/image"
 import Head from "next/head"
-import styles from "@/styles/pages-styles/contacto.module.css"
+import styles from "@/styles/pages-styles/vinculate.module.css"
+import { useEffect, useState } from "react";
 
 export default function Contacto() {
+  const [htmlString, setHtmlString] = useState('');
+
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+        const response = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/pages/103');
+        const jsonData = await response.json();
+        setHtmlString(jsonData.content.rendered);
+      } catch (error) {
+        console.log('Error al obtener los datos de la API:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
+
+  function salvacion(htmlString, myClass) {
+    if (!htmlString) return("Cargando");
+    else {
+      var e = document.createElement('div');
+      e.innerHTML = htmlString;
+      return(e.getElementsByClassName(myClass)[0].textContent);
+    }
+  }
+
   return (
     <>
       <Head>

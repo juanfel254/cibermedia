@@ -11,11 +11,13 @@ export default function ArtistsCardsA() {
               <p className={styles.picture_container}>Foto</p>
             <ul>
               <li>
-                <Link href={`/group-portfolio`} className={styles.card_link} key={artist}>
+                <Link href={`/artista`} className={styles.card_link} key={artist}>
                   <h3 className={`font-family-compress ${styles.artist_name}`}>{artist}</h3>
                 </Link>
               </li>
-              <li><p className={styles.artist_description}>{`Sinopsis de ${artist}`}</p></li>
+              <li>
+                <p className={styles.artist_description}>{`Sinopsis de ${artist}`}</p>
+              </li>
             </ul>
           </li>
         ))}
