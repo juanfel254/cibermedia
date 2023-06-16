@@ -25,6 +25,12 @@
   padding: 21px;
 }
 
+.filters_container select option {
+  background-color: var(--purple);
+  color: var(--yellow);
+  font-family: Rubik;
+}
+
 .filter_title {
   font-family: Compress;
   font-size: 38px;
