@@ -119,7 +119,7 @@ export default function KennedyMap() {
     });
   }, [lng, lat, zoom]);
 
-  function rotateMap() {
+/*   function rotateMap() {
     const rotationSpeed = 5; // Velocidad de rotación en grados por frame
 
     function animate() {
@@ -127,7 +127,7 @@ export default function KennedyMap() {
       map.current.easeTo({ bearing: map.current.getBearing() + rotationSpeed });
     }
     animate();
-  }
+  } */
 
   return (
     <div>
