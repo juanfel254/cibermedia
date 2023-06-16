@@ -73,7 +73,7 @@ const Artistas = () => {
               <select onChange={handleSelectChange} name="profile">
                 <option value={-1}>Todos</option>
                 {profilesCategories.map((category, index) => 
-                  <option key={category.slug} value={category.id}>{category.name}</option>
+                  <option className={styles.option_select} key={category.slug} value={category.id}>{category.name}</option>
                 )}
               </select>
             </div>
@@ -82,7 +82,7 @@ const Artistas = () => {
               <select onChange={handleSelectChange} name="upz">
                 <option value={-1}>Todos</option>
                 {upzCategories.map((category, index) => 
-                  <option key={category.slug} value={category.id}>{category.name}</option>
+                  <option className={styles.option_select} key={category.slug} value={category.id}>{category.name}</option>
                 )}
               </select>
             </div>
