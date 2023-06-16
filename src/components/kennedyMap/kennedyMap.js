@@ -15,6 +15,7 @@ export default function KennedyMap() {
   const [lng, setLng] = useState(lngKennedy);
   const [lat, setLat] = useState(latKennedy);
   const [zoom, setZoom] = useState(initialZoom);
+  const popup = useRef(new mapboxgl.Popup({ backgroundColor: '#2D1A47' }));
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -43,6 +44,7 @@ export default function KennedyMap() {
     });
 
     let hoveredPolygonId = null;
+    let clickeUPZ = null;
 
     map.current.on('load', () => {
       map.current.addSource('UPZs', {
@@ -92,7 +94,21 @@ export default function KennedyMap() {
         map.current.setFeatureState(
           { source: 'UPZs', id: hoveredPolygonId },
           { hover: true }
-        );
+        );        
+
+        if (clickeUPZ !== e.features[0].properties.nom_upz) {
+
+          popup.current.setLngLat(e.lngLat).setHTML(
+            `<h2 className="secondary-title popup-title">${e.features[0].properties.nom_upz}</h2>`
+          );
+            
+          if (!popup.current.isOpen()) {
+            popup.current.addTo(map.current);
+          }
+        } else {
+              popup.current.remove()
+           }
+
       }
     });
 
@@ -100,11 +116,11 @@ export default function KennedyMap() {
       if (e.features.length > 0) {
         const feature = e.features[0];
         const coordinates = e.lngLat;
-        console.log(feature);
         new mapboxgl.Popup({ backgroundColor: '#2D1A47' })
           .setLngLat(coordinates)
           .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
           .addTo(map.current);
+        clickeUPZ = feature.properties.nom_upz
       }
     });
 
@@ -116,6 +132,8 @@ export default function KennedyMap() {
         );
       }
       hoveredPolygonId = null;
+      popup.current.remove();
+
     });
   }, [lng, lat, zoom]);
 
