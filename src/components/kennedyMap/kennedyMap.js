@@ -126,7 +126,6 @@ export default function KennedyMap() {
       requestAnimationFrame(animate);
       map.current.easeTo({ bearing: map.current.getBearing() + rotationSpeed });
     }
-
     animate();
   }
 
