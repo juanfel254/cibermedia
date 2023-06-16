@@ -7,7 +7,7 @@ const menuItems = [
   { label: "Mapa", content: "¡Aquí estamos!", link: "/" },
   { label: "Artistas", content: "Los que somos", link: "/artistas" },
   { label: "Nosotros", content: "¿Quiénes somos?", link: "/nosotros" },
-  { label: "Vincúlate", content: "Únetenos", link: "/contacto" }
+  { label: "Vincúlate", content: "Únetenos", link: "/vinculate" }
 ];
 
 export default function Header() {

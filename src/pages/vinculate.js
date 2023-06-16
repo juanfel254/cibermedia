@@ -1,8 +1,37 @@
 import Image from "next/image"
 import Head from "next/head"
-import styles from "@/styles/pages-styles/contacto.module.css"
+import styles from "@/styles/pages-styles/vinculate.module.css"
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function Contacto() {
+export default function Vinculate() {
+  const [htmlString, setHtmlString] = useState('');
+
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+        const response = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/pages/103');
+        const jsonData = await response.json();
+        setHtmlString(jsonData.content.rendered);
+      } catch (error) {
+        console.log('Error al obtener los datos de la API:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
+
+  function salvacion(htmlString, myClass) {
+    if (!htmlString) return("Cargando");
+    else {
+      var e = document.createElement('div');
+      e.innerHTML = htmlString;
+      return(e.getElementsByClassName(myClass));
+    }
+  }
+
+  function getDetails(element, attribute){ return element.getAttribute(attribute)}; 
+
   return (
     <>
       <Head>
@@ -26,6 +55,17 @@ export default function Contacto() {
           <li className={styles.main_container_child}>
             <section>
               <ul className={styles.form_main_container}>
+                <li>
+                  <h1 className="main-title">Haz Parte o Actualiza tu perfil</h1>
+                </li>
+                <ul className={styles.buttons_container}>
+                  <Link className={styles.contact_button} href="/">
+                    Soy Nuevo y quiero hacer parte
+                  </Link>
+                  <Link href="/" className={styles.contact_button}>
+                    Quiero actualizar mi perfil
+                  </Link>
+                </ul>
                 <li>
                   <h1 className="main-title">¡Pongámonos en Contacto!</h1>
                 </li>
