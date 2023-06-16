@@ -59,10 +59,10 @@ export default function Vinculate() {
                   <h1 className="main-title">Haz Parte o Actualiza tu perfil</h1>
                 </li>
                 <ul className={styles.buttons_container}>
-                  <Link className={styles.contact_button} href="/">
+                  <Link target="_blank" href="https://forms.gle/t6MicFD1DWanthGv6" className={styles.contact_button} >
                     Soy Nuevo y quiero hacer parte
                   </Link>
-                  <Link href="/" className={styles.contact_button}>
+                  <Link target="_blank" href=" https://docs.google.com/forms/d/e/1FAIpQLScE6n3kiqM5aaN4Q0XFhSP-CWZonuV67TFIFSfWY4NjowO70g/viewform" className={styles.contact_button}>
                     Quiero actualizar mi perfil
                   </Link>
                 </ul>

@@ -64,7 +64,6 @@ export default function ArtistaIndv({ artista }){
       audioDescription: getText(getByClassName("sinopsis-audio")),
     },
   }
-console.log("test",info.project.audioSrc)
   return (
     <>
       <Head>

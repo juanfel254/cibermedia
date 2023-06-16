@@ -3,7 +3,6 @@ import styles from "@/styles/profileCards/artistCardA.module.css"
 import Image from "next/image";
 
 export default function ArtistsCardsA({ artistas }) {
-  
   function limit (string = '', limit = 0) {  
     return string.substring(0, limit)
   }
@@ -45,29 +44,29 @@ export default function ArtistsCardsA({ artistas }) {
 
   return (
     <ul className={styles.cards_container}>
-      {artistas.map((artista, index) => (
-          <li key={index} className={styles.card_container}>
-            <img 
-              width={250}
-              height={250}
-              src={extractAttributeFromTag(artista.content.rendered, "srcSet", "img")}
-              alt="Foto de artista"
-              className={styles.picture_container}
-            />
-            <ul>
-              <li>
-                <Link href={`/artistas/${artista.id}`} className={styles.card_link} key={index}>
-                  <h3 className={`font-family-compress ${styles.artist_name}`}>{artista.title.rendered}</h3>
-                </Link>
-              </li>
-              <li>
-                <p className={styles.artist_description}>
-                  {limit(findText(artista.content.rendered, "descripcion-artista", "p").toString(), "150") + "..."}
-                </p>
-              </li>
-            </ul>
-          </li>
-        ))}
+      {artistas.length !== 0 ? artistas.map((artista, index) => (
+        <li key={index} className={styles.card_container}>
+          <img 
+            width={250}
+            height={250}
+            src={extractAttributeFromTag(artista.content.rendered, "srcSet", "img")}
+            alt="Foto de artista"
+            className={styles.picture_container}
+          />
+          <ul>
+            <li>
+              <Link href={`/artistas/${artista.id}`} className={styles.card_link} key={index}>
+                <h3 className={`font-family-compress ${styles.artist_name}`}>{artista.title.rendered}</h3>
+              </Link>
+            </li>
+            <li>
+              <p className={styles.artist_description}>
+                {limit(findText(artista.content.rendered, "descripcion-artista", "p").toString(), "150") + "..."}
+              </p>
+            </li>
+          </ul>
+        </li>
+      )) : <h2>No hay resultados para tu selección</h2>}
     </ul>
   )
 }
