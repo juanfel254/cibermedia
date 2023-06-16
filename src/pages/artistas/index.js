@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
+import { useEffect, useState } from "react";
 
 export const getStaticProps = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/posts/?per_page=100')
@@ -8,10 +9,24 @@ export const getStaticProps = async () => {
   return {
     props : {artistas : data}
   }
-
 }
 
-const Artistas = ({artistas}) => {
+const Artistas = () => {
+  const [artists, setArtists] = useState('');
+
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+        const res = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/posts/?per_page=100')
+        const data = await res.json();
+        setArtists(data);
+      } catch (error) {
+        console.log('Error al obtener los datos de la API:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
 
   return (
     <>
@@ -24,7 +39,7 @@ const Artistas = ({artistas}) => {
       <div className="main-container">
         <h1 className="main-title">Artistas de la Localidad</h1>
         <section>
-          {artistas ? <ArtistsCardsA artistas={artistas} /> : "Nou"}
+          {artists ? <ArtistsCardsA artistas={artists} /> : "Nou"}
         </section>
       </div>
     </>

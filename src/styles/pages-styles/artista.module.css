@@ -26,7 +26,7 @@
   text-align: center;
   font-family: compress;
   font-weight: 500;
-  font-size: 35px;
+  font-size: 40px;
   margin: 0;
 }
 
@@ -60,6 +60,12 @@
   font-weight: 500;
 }
 
+.visual_desc div iframe {
+  width: 100%;
+  min-height: 500px;
+  margin-bottom: 40px;
+}
+
 @media only screen and (max-width: 640px) {
   .portfolio_container {
     padding: 0; 
@@ -70,5 +76,8 @@
   }
   .projects_container {
     width: 100%;
+  }
+  .visual_desc div iframe {
+    min-height: 300px;
   }
 }
