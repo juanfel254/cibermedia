@@ -80,7 +80,7 @@ console.log("test",info.project.audioSrc)
             <img src={info.imgSrc} style={{ width: '90%', maxWidth: '400px', marginBottom: '20px' }} alt="artist image"/>
           </center>
           <h2 className={styles.artist_name}>
-            {artista.title.rendered} - Perfil o Enfoque
+            {artista.title.rendered}
           </h2>
           <p className={styles.artist_desc}>
             {info.description}
