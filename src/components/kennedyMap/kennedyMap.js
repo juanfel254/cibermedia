@@ -99,6 +99,11 @@ export default function KennedyMap() {
       });
     });
 
+
+    map.current.on('mouseenter', 'UPZs-fills', ()=>{
+      map.current.getCanvas().style.cursor = "pointer"
+    })
+
     map.current.on('mousemove', 'UPZs-fills', (e) => {
       if (e.features.length > 0) {
         if (hoveredPolygonId !== null) {
@@ -143,6 +148,7 @@ export default function KennedyMap() {
     });
 
     map.current.on('mouseleave', 'UPZs-fills', () => {
+      map.current.getCanvas().style.cursor = ""
       if (hoveredPolygonId !== null) {
         map.current.setFeatureState(
           { source: 'UPZs', id: hoveredPolygonId },
