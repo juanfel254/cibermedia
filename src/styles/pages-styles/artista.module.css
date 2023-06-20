@@ -21,20 +21,21 @@
 .projects_container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: initial;
   width: 66%;
 }
 
 .project_title_container {
   padding: 0;
   margin: 0;
+  background-color: var(--black);
 }
 
 .project_title {
   text-align: center;
   font-family: compress;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 60px;
   margin: 0;
 }
 
@@ -44,6 +45,10 @@
 
 .sound_project_container {
   background-color: var(--black);
+}
+
+.visual_project_container, .sound_project_container {
+  height: -webkit-fill-available;
 }
 
 .artist_name {
@@ -75,10 +80,11 @@
   margin-bottom: 40px;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 1140px) {
   .portfolio_container {
     padding: 0; 
     flex-direction: column;
+    text-align: center;
   }
   .artist_desc_container {
     width: 100%;
