@@ -564,3 +564,8 @@ Animation keyframes
   }
 
 }
+
+.audio-player {
+  width: 100%;
+  padding: 0px;
+}

@@ -4,7 +4,6 @@ import KennedyMap from '@/components/kennedyMap/kennedyMap';
 import styles from '@/styles/Home.module.css';
 
 export default function Home() {
-
   return (
     <>
       <Head>

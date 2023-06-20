@@ -13,7 +13,7 @@ export default function Footer () {
   useEffect(()=> {
     async function fetchData () {
       try {
-        const response = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/pages/103');
+        const response = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/pages/103');
         const jsonData = await response.json();
         setHtmlString(jsonData.content.rendered);
       } catch (error) {

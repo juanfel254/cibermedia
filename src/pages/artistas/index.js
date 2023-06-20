@@ -4,14 +4,14 @@ import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
 import styles from "@/styles/pages-styles/artistas.module.css"
 import categoriesArray from "@/categories.json"
 
-export const getStaticProps = async () => {
-  const res = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/posts/?per_page=100')
+/* export const getStaticProps = async () => {
+  const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio/?per_page=100')
   const data = await res.json();
 
   return {
     props : {artistas : data}
   }
-}
+} */
 
 const Artistas = () => {
   const [artists, setArtists] = useState('');
@@ -34,7 +34,7 @@ const Artistas = () => {
   useEffect(()=> {
     async function fetchData () {
       try {
-        const res = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/posts/?per_page=100')
+        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100')
         const data = await res.json();
         setArtists(data);
       } catch (error) {
@@ -49,10 +49,11 @@ const Artistas = () => {
       let filteredArtists = artists;
       if(selectedProfile !== -1 || selectedUpz !== -1) {
         filteredArtists = artists.filter((artist) => 
-        (selectedProfile !== -1 ? artist.categories.includes(selectedProfile) : true) 
-        && (selectedUpz !== -1 ? artist.categories.includes(selectedUpz) : true)
+        (selectedProfile !== -1 ? artist.ACF.perfil.includes(selectedProfile) : true) 
+        && (selectedUpz !== -1 ? artist.ACF.upz.includes(selectedUpz) : true)
       )}
       setFiltered(filteredArtists);
+      console.log(filteredArtists);
     }
   }, [artists, selectedProfile, selectedUpz])
 
@@ -88,7 +89,7 @@ const Artistas = () => {
             </div>
           </section>
           <section className={styles.cards_container}>
-            {filtered ? <ArtistsCardsA artistas={filtered} /> : "Nou"}
+            {filtered ? <ArtistsCardsA artistas={filtered} /> : "Cargando..."}
           </section>
         </ul>
       </div>
