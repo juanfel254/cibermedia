@@ -56,7 +56,12 @@ export default function ArtistaIndv({ artista }){
             {artista.title.rendered}
           </h2>
           <ul className={styles.artist_networks}>
-            {}
+            {/* artista.ACF.redes_sociales.instagram !== "" ? 
+            <li className={`${styles.artist_network} my-link`}> 
+              <a target="_blank" href={artista.ACF.redes_sociales.instagram}>
+                {artista.acf.redes_sociales.instagram.title}
+              </a>
+            </li> : "" */}
           </ul>
           <p className={styles.artist_desc}>
             {artista.ACF.descripcion_artista}

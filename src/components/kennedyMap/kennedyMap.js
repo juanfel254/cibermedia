@@ -16,6 +16,23 @@ export default function KennedyMap() {
   const [lat, setLat] = useState(latKennedy);
   const [zoom, setZoom] = useState(initialZoom);
   const popup = useRef(new mapboxgl.Popup({ backgroundColor: '#2D1A47' }));
+  
+  const [artists, setArtists] = useState("");
+  const [upzSelected, setUpzSelected] = useState("");
+  const [filtered, setFiltered] = useState(null);
+
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100')
+        const data = await res.json();
+        setArtists(data);
+      } catch (error) {
+        console.log('Error al obtener los datos de la API:', error);
+      }
+    };
+    fetchData();
+  }, [])
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -32,7 +49,7 @@ export default function KennedyMap() {
       map.current.setZoom(11.6)
     }  
 
-    map.current.on('style.load', () => {
+/*     map.current.on('style.load', () => {
       // Establecer la rotación inicial del mapa
       map.current.setBearing(0);
 
@@ -41,7 +58,7 @@ export default function KennedyMap() {
 
       // Iniciar la rotación continua del mapa
       rotateMap();
-    });
+    }); */
 
     let hoveredPolygonId = null;
     let clickeUPZ = null;
@@ -97,7 +114,7 @@ export default function KennedyMap() {
         );        
 
         if (clickeUPZ !== e.features[0].properties.nom_upz) {
-
+          
           popup.current.setLngLat(e.lngLat).setHTML(
             `<h2 className="secondary-title popup-title">${e.features[0].properties.nom_upz}</h2>`
           );
@@ -120,7 +137,8 @@ export default function KennedyMap() {
           .setLngLat(coordinates)
           .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
           .addTo(map.current);
-        clickeUPZ = feature.properties.nom_upz
+        clickeUPZ = feature.properties.nom_upz;
+        setUpzSelected(clickeUPZ);
       }
     });
 
@@ -147,9 +165,28 @@ export default function KennedyMap() {
     animate();
   } */
 
+  function capitaliceWords(phrase) {
+    if(phrase == "AMERICAS"){return "Américas"}
+    return phrase.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  useEffect(() => {
+    if(artists) {
+      let filteredArtists = artists;
+      if(upzSelected !== "") {
+        filteredArtists = artists.filter((artist) => 
+        (upzSelected !== "" ? artist.ACF.upz.includes(capitaliceWords(upzSelected)) : true)
+      )}
+      setFiltered(filteredArtists);
+    }
+  }, [artists, upzSelected])
+
   return (
-    <div>
+    <div className={styles.artists_map_container}>
       <div ref={mapContainer} className={styles.map_container} />
+      <div className={styles.artists_container}>
+        {filtered ? <ArtistsCardsA artistas={filtered}/> : ""}
+      </div>
     </div>
   );
 }
