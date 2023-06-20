@@ -1,7 +1,38 @@
+.artists_map_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.artists_container {
+  width: 40%;
+  display: flex;
+}
+
+.artists_container ul {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  overflow-y: auto;
+  justify-content: flex-start;
+  height: 723px;
+  gap: 57px;
+}
+
+.artists_container ul li {
+  width: 100%;
+  height: fit-content;
+}
+
+.artists_container ul li ul {
+  display: block;
+  height: 150px;
+  overflow-y:hidden;
+}
+
 .map_container {
   height: 750px;
   width: 750px;
-  margin: 0 auto;
   border-radius: 60%;
 }
 
@@ -16,10 +47,37 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
-  .map_container {
+@media only screen and (max-width: 640px) {
+  .artists_map_container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .map_container {  
     width: 325px;
     height: 325px;
     border-radius: 45%;
   }
+  .artists_container {
+    width: 100%;
+    display: flex;
+  }
+
+  .artists_container ul {
+    display: flex;
+    width: 100%;
+    overflow-y: scroll;
+    min-height: 150px;
+    max-height: 400px;
+    height: 100%;
+    gap: 57px;
+    padding-right: 0px;
+  }
+
+  .artists_container ul li ul {
+    display: block;
+    height: 150px;
+    overflow-y:hidden;
+    padding-right: 0px;
+  }
+
 }

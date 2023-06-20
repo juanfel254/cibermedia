@@ -14,6 +14,15 @@
   text-align: center;
 }
 
+.artist_networks {
+  display: flex;
+  justify-content: row;
+}
+
+.artist_networks .artist_network:visited, .artist_network:link, .artist_network:focus, .artist_network  :active {
+  color: var(--purple) !important; 
+}
+
 .visual_desc {
   font-size: 30px;
 }
