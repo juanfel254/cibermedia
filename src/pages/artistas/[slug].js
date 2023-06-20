@@ -55,6 +55,9 @@ export default function ArtistaIndv({ artista }){
           <h2 className={styles.artist_name}>
             {artista.title.rendered}
           </h2>
+          <ul className={styles.artist_networks}>
+            {}
+          </ul>
           <p className={styles.artist_desc}>
             {artista.ACF.descripcion_artista}
           </p>

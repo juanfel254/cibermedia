@@ -5,7 +5,7 @@ import styles from "@/styles/pages-styles/artistas.module.css"
 import categoriesArray from "@/categories.json"
 
 /* export const getStaticProps = async () => {
-  const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio/?per_page=100')
+  const res = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/posts/?per_page=100')
   const data = await res.json();
 
   return {
@@ -15,8 +15,8 @@ import categoriesArray from "@/categories.json"
 
 const Artistas = () => {
   const [artists, setArtists] = useState('');
-  const [selectedProfile, setSelectedProfile] = useState(-1);
-  const [selectedUpz, setSelectedUpz] = useState(-1);
+  const [selectedProfile, setSelectedProfile] = useState("");
+  const [selectedUpz, setSelectedUpz] = useState("");
   const [filtered, setFiltered] = useState(null);
 
   const profilesCategories = categoriesArray.filter(category => category.parent == 9);
@@ -25,9 +25,9 @@ const Artistas = () => {
   function handleSelectChange(e) {
     const { name, value } = e.target;
     if(name == "profile") {
-      setSelectedProfile(Number(value))
+      setSelectedProfile(value)
     } else if(name === "upz") {
-      setSelectedUpz(Number(value))
+      setSelectedUpz(value)
     }
   }
 
@@ -47,13 +47,12 @@ const Artistas = () => {
   useEffect(() => {
     if(artists) {
       let filteredArtists = artists;
-      if(selectedProfile !== -1 || selectedUpz !== -1) {
+      if(selectedProfile !== "" || selectedUpz !== "") {
         filteredArtists = artists.filter((artist) => 
-        (selectedProfile !== -1 ? artist.ACF.perfil.includes(selectedProfile) : true) 
-        && (selectedUpz !== -1 ? artist.ACF.upz.includes(selectedUpz) : true)
+        (selectedProfile !== "" ? artist.ACF.perfil.includes(selectedProfile) : true) 
+        && (selectedUpz !== "" ? artist.ACF.upz.includes(selectedUpz) : true)
       )}
       setFiltered(filteredArtists);
-      console.log(filteredArtists);
     }
   }, [artists, selectedProfile, selectedUpz])
 
@@ -72,18 +71,18 @@ const Artistas = () => {
             <div>
               <h3 className={styles.filter_title}>Perfil</h3>
               <select onChange={handleSelectChange} name="profile">
-                <option value={-1}>Todos</option>
+                <option value={""}>Todos</option>
                 {profilesCategories.map((category, index) => 
-                  <option className={styles.option_select} key={category.slug} value={category.id}>{category.name}</option>
+                  <option className={styles.option_select} key={category.slug} value={category.name}>{category.name}</option>
                 )}
               </select>
             </div>
             <div>
               <h3 className={styles.filter_title}>UPZ</h3>
               <select onChange={handleSelectChange} name="upz">
-                <option value={-1}>Todos</option>
+                <option value={""}>Todos</option>
                 {upzCategories.map((category, index) => 
-                  <option className={styles.option_select} key={category.slug} value={category.id}>{category.name}</option>
+                  <option className={styles.option_select} key={category.slug} value={category.name}>{category.name}</option>
                 )}
               </select>
             </div>
