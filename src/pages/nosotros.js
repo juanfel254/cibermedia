@@ -13,8 +13,9 @@ export default function Nosotros() {
       </Head>
       
       <div className="main-container">
-        <h1 className="main-title">Sobre Nosotros</h1>
-        <section id="colectivo-cultural-cibermedia">
+        <h1 className="main-title">Muy pronto podrás conocernos mejor...</h1>
+        <p className="text-centered">Sección en mantenimiento 🏗️</p>
+        {/* <section id="colectivo-cultural-cibermedia">
           <ul className={styles.card_container}>
             <li className={styles.card_child}>
               <p className={styles.picture_container}>Foto</p>
@@ -26,12 +27,7 @@ export default function Nosotros() {
               </ul>
             </li>
           </ul>
-        </section>
-
-        <section id="miembros-colectivo-cultural-cibermedia">
-        <h2 className="secondary-title">Miembros</h2>
-        <ArtistsCardsB/>
-        </section>
+        </section> */}
       </div>
     </>
   )

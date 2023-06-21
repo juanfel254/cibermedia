@@ -25,11 +25,9 @@ main {
   position: relative;
 }
 
-.display-true {
-  display: block;
-}
-.display-false {
-  display: none;
+.text-centered {
+  text-align: center;
+  font-size: 30px;
 }
 
 .main-container{
@@ -523,6 +521,9 @@ Animation keyframes
 
 
 @media only screen and (max-width: 640px) {
+  .text-centered {
+    font-size: 20px;
+  }
   .main-container {
     padding: 30px;
   }
