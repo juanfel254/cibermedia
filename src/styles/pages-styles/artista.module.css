@@ -5,12 +5,23 @@
   padding: 0;
 }
 
+.back_link {
+  font-size: 35px;
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.back_link:hover {
+  text-decoration: underline;
+  font-weight: 900;
+}
+
 .artist_desc_container, .projects_container li {
   padding: 20px;
 }
 
 .artist_desc {
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -24,7 +35,7 @@
 }
 
 .visual_desc {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .projects_container {
@@ -76,7 +87,7 @@
 
 .sound_desc {
   margin-bottom: 0;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .artist_desc, .visual_desc, .sound_desc {
@@ -101,6 +112,17 @@
   .projects_container {
     width: 100%;
   }
+  .project_title {
+    font-size: 35px;
+  }
+  .artist_desc {
+    font-size: 15px;
+    text-align: center;
+  }
+  .visual_desc, .sound_desc {
+    font-size: 15px;
+  }
+  
   .visual_desc div iframe {
     min-height: 300px;
   }
