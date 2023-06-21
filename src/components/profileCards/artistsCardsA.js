@@ -32,9 +32,9 @@ export default function ArtistsCardsA({ artistas }) {
             </li>
           </ul>
         </li>
-      )) : <h1 className="main-title">Aún no tenemos artistas de esta zona. 
+      )) : <h2 className={styles.no_artists}>Aún no tenemos artistas de esta zona. 
               <Link href={"/vinculate"} className={styles.vinculate_link}> ¡Podrías ser el primero!</Link>
-            </h1>}
+            </h2>}
     </ul>
   )
 }

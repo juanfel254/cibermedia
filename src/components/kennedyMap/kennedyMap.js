@@ -16,23 +16,24 @@ export default function KennedyMap() {
   const [lat, setLat] = useState(latKennedy);
   const [zoom, setZoom] = useState(initialZoom);
   const popup = useRef(new mapboxgl.Popup({ backgroundColor: '#2D1A47' }));
-  
+
   const [artists, setArtists] = useState("");
   const [upzSelected, setUpzSelected] = useState("");
   const [filtered, setFiltered] = useState(null);
+  let [clicks, setClicks] = useState(false);
 
-  useEffect(()=> {
-    async function fetchData () {
+  useEffect(() => {
+    async function fetchData() {
       try {
-        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100')
+        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
         const data = await res.json();
         setArtists(data);
       } catch (error) {
         console.log('Error al obtener los datos de la API:', error);
       }
-    };
+    }
     fetchData();
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -45,20 +46,11 @@ export default function KennedyMap() {
       interactive: false
     });
 
-    if (window.innerWidth < 600){ // change default zoom for mobile screen
-      map.current.setZoom(11.6)
-    }  
-
-/*     map.current.on('style.load', () => {
-      // Establecer la rotación inicial del mapa
-      map.current.setBearing(0);
-
-      // Establecer la inclinación vertical del mapa
-      map.current.setPitch(0);
-
-      // Iniciar la rotación continua del mapa
-      rotateMap();
-    }); */
+    if (window.innerWidth < 640) {
+      map.current.setZoom(11.6);
+    } else if (window.innerWidth > 641 && window.innerWidth <= 1200) {
+      map.current.setZoom(12.5);
+    }
 
     let hoveredPolygonId = null;
     let clickeUPZ = null;
@@ -99,10 +91,9 @@ export default function KennedyMap() {
       });
     });
 
-
-    map.current.on('mouseenter', 'UPZs-fills', ()=>{
-      map.current.getCanvas().style.cursor = "pointer"
-    })
+    map.current.on('mouseenter', 'UPZs-fills', () => {
+      map.current.getCanvas().style.cursor = 'pointer';
+    });
 
     map.current.on('mousemove', 'UPZs-fills', (e) => {
       if (e.features.length > 0) {
@@ -116,21 +107,19 @@ export default function KennedyMap() {
         map.current.setFeatureState(
           { source: 'UPZs', id: hoveredPolygonId },
           { hover: true }
-        );        
+        );
 
         if (clickeUPZ !== e.features[0].properties.nom_upz) {
-          
           popup.current.setLngLat(e.lngLat).setHTML(
             `<h2 className="secondary-title popup-title">${e.features[0].properties.nom_upz}</h2>`
           );
-            
+
           if (!popup.current.isOpen()) {
             popup.current.addTo(map.current);
           }
         } else {
-              popup.current.remove()
-           }
-
+          popup.current.remove();
+        }
       }
     });
 
@@ -142,13 +131,14 @@ export default function KennedyMap() {
           .setLngLat(coordinates)
           .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
           .addTo(map.current);
+        setClicks(true);
         clickeUPZ = feature.properties.nom_upz;
         setUpzSelected(clickeUPZ);
       }
     });
 
     map.current.on('mouseleave', 'UPZs-fills', () => {
-      map.current.getCanvas().style.cursor = ""
+      map.current.getCanvas().style.cursor = '';
       if (hoveredPolygonId !== null) {
         map.current.setFeatureState(
           { source: 'UPZs', id: hoveredPolygonId },
@@ -157,42 +147,37 @@ export default function KennedyMap() {
       }
       hoveredPolygonId = null;
       popup.current.remove();
-
     });
   }, [lng, lat, zoom]);
 
-/*   function rotateMap() {
-    const rotationSpeed = 5; // Velocidad de rotación en grados por frame
-
-    function animate() {
-      requestAnimationFrame(animate);
-      map.current.easeTo({ bearing: map.current.getBearing() + rotationSpeed });
-    }
-    animate();
-  } */
-
   function capitaliceWords(phrase) {
-    if(phrase == "AMERICAS"){return "Américas"}
-    return phrase.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    if (phrase === 'AMERICAS') {
+      return 'Américas';
+    }
+    return phrase.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
   useEffect(() => {
-    if(artists) {
+    if (artists) {
       let filteredArtists = artists;
-      if(upzSelected !== "") {
-        filteredArtists = artists.filter((artist) => 
-        (upzSelected !== "" ? artist.ACF.upz.includes(capitaliceWords(upzSelected)) : true)
-      )}
+      if (upzSelected !== '') {
+        filteredArtists = artists.filter((artist) =>
+          upzSelected !== '' ? artist.ACF.upz.includes(capitaliceWords(upzSelected)) : true
+        );
+      }
       setFiltered(filteredArtists);
     }
-  }, [artists, upzSelected])
+  }, [artists, upzSelected]);
 
   return (
-    <div className={styles.artists_map_container}>
-      <div ref={mapContainer} className={styles.map_container} />
-      <div className={styles.artists_container}>
-        {filtered ? <ArtistsCardsA artistas={filtered}/> : ""}
-      </div>
+    <div>
+      <p className={styles.message}>Toca el mapa o haz click para conocer más detalles</p>
+      <ul className={styles.artists_map_container}>
+        <li ref={mapContainer} className={styles.map_container} />
+        <li className={`${styles.artists_container}`}>
+          {clicks ? filtered ? <ArtistsCardsA artistas={filtered} /> : null : null}
+        </li>
+      </ul>
     </div>
   );
 }
