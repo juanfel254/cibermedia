@@ -8,14 +8,15 @@ const rubik = Rubik({ subsets: ['latin'] });
 
 export default function Footer () {
 
-  const [htmlString, setHtmlString] = useState('');
+  const [data, setData] = useState('');
 
   useEffect(()=> {
     async function fetchData () {
       try {
-        const response = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/pages/103');
+        const url  = "https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/contacto?slug=redes-y-contacto"
+        const response = await fetch(url);
         const jsonData = await response.json();
-        setHtmlString(jsonData.content.rendered);
+        setData(jsonData[0]);
       } catch (error) {
         console.log('Error al obtener los datos de la API:', error);
       }
@@ -24,37 +25,24 @@ export default function Footer () {
     fetchData();
   }, [])
 
-  function salvacion(htmlString, myQuery) {
-    if (!htmlString) return("Cargando");
-    else {
-      var e = document.createElement('div');
-      e.innerHTML = htmlString;
-      return(e.querySelector(myQuery));
-    }
-  }
-
-  function getText(element){ return element.textContent};
-  function getDetails(element, attribute){ return element.getAttribute(attribute)}; 
-
   return (
     <footer className={`${styles.footer} ${rubik.className}`}>
       <ul className={styles.first_container}>
-        
         <li className={styles.second_container}>
           <h4>Síguenos</h4>
           <ul className={styles.logos_container}>
             <li>
-              <a href="https://www.instagram.com/ccibermedia/" target="_blank">
+              <a href={data ? data.ACF.redes_sociales.instagram : "/"} target="_blank">
                 <Image 
                   src="/social/icono-instagram-morado.svg"
                   width={50}
                   height={50}
-                  alt="Icono de instagram morado"
+                  alt="Instagram del colectivo cultural cibermedia"
                 />
               </a>
             </li>
             <li>
-              <a href="/" target="_blank">
+              <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                 <Image 
                   src="/social/icono-youtube-morado.svg"
                   width={50}
@@ -64,7 +52,7 @@ export default function Footer () {
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/CCibermedia" target="_blank">
+              <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                 <Image 
                   src="/social/icono-twitter-morado.svg"
                   width={50}
@@ -81,10 +69,10 @@ export default function Footer () {
           <ul>
             <li className={styles.email_container}>
               <Link href="/vinculate" className="my-link">
-                {getText(salvacion(htmlString, ".correo-electronico"))}
+                {data ? data.ACF.correo_electronico : ""}
               </Link>
             </li>
-            <li>{getText(salvacion(htmlString, ".numero-telefono"))}</li>
+            <li>{data ? data.ACF.numero_telefono : ""}</li>
           </ul>
         </li>
       </ul>
