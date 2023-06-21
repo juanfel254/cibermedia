@@ -1,36 +1,36 @@
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image"
 import Head from "next/head"
-import styles from "@/styles/pages-styles/vinculate.module.css"
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import emailjs from '@emailjs/browser';
+import styles from "@/styles/pages-styles/vinculate.module.css"
 
 export default function Vinculate() {
-  const [htmlString, setHtmlString] = useState('');
+
+  const [emailSent, setEmailSent] = useState(false);
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_l4ijyy5', 'template_ko4fqzk', form.current, '7VuGspBtC6biwANer')
+      .then((result) => {
+          console.log(result.text);
+          setEmailSent(true);
+      }, (error) => {
+        alert("Tu mensaje no pudo ser enviado. Intenta nuevamente dando click en enviar.")
+          console.log(error.text);
+      });
+  };
 
   useEffect(()=> {
-    async function fetchData () {
-      try {
-        const response = await fetch('https://admin.ciberespacioartistico.com/wp-json/wp/v2/pages/103');
-        const jsonData = await response.json();
-        setHtmlString(jsonData.content.rendered);
-      } catch (error) {
-        console.log('Error al obtener los datos de la API:', error);
-      }
-    };
-
-    fetchData();
-  }, [])
-
-  function salvacion(htmlString, myClass) {
-    if (!htmlString) return("Cargando");
-    else {
-      var e = document.createElement('div');
-      e.innerHTML = htmlString;
-      return(e.getElementsByClassName(myClass));
+    if(emailSent === true){
+      alert("Tu mensaje ha sido enviado con éxito");
+      location.reload();
+      setEmailSent(false)
     }
-  }
-
-  function getDetails(element, attribute){ return element.getAttribute(attribute)}; 
+  }, [emailSent])
 
   return (
     <>
@@ -70,11 +70,10 @@ export default function Vinculate() {
                   <h1 className="main-title">¡Pongámonos en Contacto!</h1>
                 </li>
                 <li>
-                  <form id="contactform" className={styles.form_container}>
-                    <input type="text" id="name" placeholder="¿Cuál es tu nombre?" className={styles.name_input} required="required" autoComplete="given-name"/>
-                    <input type="email" id="email" placeholder="¿Cuál es tu correo electrónico?" className={styles.email_input} required="required" autoComplete="email"/>
-                    <input type="text" id="subject" placeholder="¿Cuál es el asunto de tu mensaje?" className={styles.subject_input} required="required" autoComplete="off"/>
-                    <textarea form="contactform" type="text" id="message" name="message" placeholder="¿Cómo podemos ayudarte?" className={styles.message_input} required="required" size="50" autoComplete="off"/>
+                  <form ref={form} onSubmit={sendEmail} id="contactform" className={styles.form_container}>
+                    <input name="user_name" type="text" id="name" placeholder="¿Cuál es tu nombre?" className={styles.name_input} required="required" autoComplete="given-name"/>
+                    <input name="user_email" type="email" id="email" placeholder="¿Cuál es tu correo electrónico?" className={styles.email_input} required="required" autoComplete="email"/>
+                    <textarea name="message" form="contactform" type="text" id="message" placeholder="¿Cómo podemos ayudarte?" className={styles.message_input} required="required" size="50" autoComplete="off"/>
                     <input type="submit" id="submit-button" value="Enviar mensaje" className={`${styles.submit_button}`}/>
                   </form>
                 </li>
