@@ -8,4 +8,4 @@ You can check the latest stable version of this project [on this link](https://c
 
 ## Technical Details
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), hosted by [Netlify](https://www.netlify.com/). The backend is hosted in [Wordpress](https://wordpress.com), connected by the [WP REST API](https://developer.wordpress.org/rest-api/) 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), hosted by [Vercel](https://www.vercel.com/). The backend is hosted in [Wordpress](https://wordpress.com), connected by the [WP REST API](https://developer.wordpress.org/rest-api/) 
