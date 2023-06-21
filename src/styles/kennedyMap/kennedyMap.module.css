@@ -1,3 +1,9 @@
+.message {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .artists_map_container {
   display: flex;
   justify-content: space-around;
@@ -17,6 +23,7 @@
   justify-content: flex-start;
   height: 723px;
   gap: 57px;
+  align-items: center;
 }
 
 .artists_container ul li {
@@ -48,6 +55,9 @@
 }
 
 @media only screen and (max-width: 640px) {
+  .message {
+    font-size: 12px;
+  }
   .artists_map_container {
     flex-direction: column;
     gap: 30px;
@@ -66,7 +76,7 @@
     display: flex;
     width: 100%;
     overflow-y: scroll;
-    min-height: 150px;
+    min-height: 60px;
     max-height: 400px;
     height: 100%;
     gap: 57px;
@@ -79,5 +89,38 @@
     overflow-y:hidden;
     padding-right: 0px;
   }
+}
 
+@media only screen and (min-width: 641px) and (max-width: 1200px) {
+  .map_container {  
+    width: 620px;
+    height: 620px;
+    border-radius: 45%;
+  }
+  .message {
+    font-size: 12px;
+  }
+  .artists_map_container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .artists_container {
+    width: 100%;
+  }
+  .artists_container ul li ul {
+    display: block;
+    height: 150px;
+    overflow-y:hidden;
+    padding-right: 0px;
+  }
+  .artists_container ul {
+    display: flex;
+    width: 100%;
+    overflow-y: scroll;
+    min-height: 60px;
+    max-height: 510px;
+    height: 100%;
+    gap: 57px;
+    padding-right: 0px;
+  }
 }

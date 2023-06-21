@@ -25,6 +25,13 @@ main {
   position: relative;
 }
 
+.display-true {
+  display: block;
+}
+.display-false {
+  display: none;
+}
+
 .main-container{
   padding: 40px 60px;
 }
