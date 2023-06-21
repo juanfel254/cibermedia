@@ -1,6 +1,7 @@
 import Head from "next/head"
 import Image from "next/image"
 import styles from "@/styles/pages-styles/artista.module.css"
+import Link from "next/link";
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
@@ -44,6 +45,7 @@ export default function ArtistaIndv({ artista }){
       
       <div className={`${styles.portfolio_container} main-container`}>
         <section className={styles.artist_desc_container}>
+          <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
           <center>
             <Image 
               src={artista.ACF.galeria_fotos.foto_1} 
@@ -80,6 +82,9 @@ export default function ArtistaIndv({ artista }){
             <p className={styles.visual_desc}>
               {artista.ACF.sinopsis_video}
             </p>
+            <p>
+              {artista.ACF.creditos_video}
+            </p>
           </li>
           <li className={styles.sound_project_container}>
             {artista.ACF.archivo_audio && <audio controls controlsList="nodownload"  className="audio-player">  
@@ -87,6 +92,9 @@ export default function ArtistaIndv({ artista }){
             </audio>}
             <p className={styles.sound_desc}>
               {artista.ACF.sinopsis_audio}
+            </p>
+            <p>
+            {artista.ACF.creditos_audio}
             </p>
           </li>
         </ul>
