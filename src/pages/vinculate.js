@@ -7,9 +7,24 @@ import styles from "@/styles/pages-styles/vinculate.module.css"
 
 export default function Vinculate() {
 
-  const [emailSent, setEmailSent] = useState(false);
-
   const form = useRef();
+  const [emailSent, setEmailSent] = useState(false);
+  const [data, setData] = useState('');
+
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+        const url  = "https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/contacto?slug=redes-y-contacto"
+        const response = await fetch(url);
+        const jsonData = await response.json();
+        setData(jsonData[0]);
+      } catch (error) {
+        console.log('Error al obtener los datos de la API:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -58,12 +73,13 @@ export default function Vinculate() {
                 <li>
                   <h1 className="main-title">Haz Parte o Actualiza tu perfil</h1>
                 </li>
+                {data ? <li className={styles.vinculate_text}><p>{data.ACF.texto_descriptivo_contacto}</p></li> : ""}
                 <ul className={styles.buttons_container}>
-                  <Link target="_blank" href="https://forms.gle/t6MicFD1DWanthGv6" className={styles.contact_button} >
-                    Soy Nuevo y quiero hacer parte
+                  <Link target="_blank" href={data ? data.ACF.botones_contacto.boton_1.url: ""} className={styles.contact_button} >
+                    {data ? data.ACF.botones_contacto.boton_1.title : ""}
                   </Link>
-                  <Link target="_blank" href=" https://docs.google.com/forms/d/e/1FAIpQLScE6n3kiqM5aaN4Q0XFhSP-CWZonuV67TFIFSfWY4NjowO70g/viewform" className={styles.contact_button}>
-                    Quiero actualizar mi perfil
+                  <Link target="_blank" href={data ? data.ACF.botones_contacto.boton_2.url : ""} className={styles.contact_button}>
+                  {data ? data.ACF.botones_contacto.boton_2.title : ""}
                   </Link>
                 </ul>
                 <li>
@@ -83,7 +99,7 @@ export default function Vinculate() {
                 <li>
                   <ul className={styles.logos_container}>
                     <li>
-                      <a href="https://www.instagram.com/ccibermedia/" target="_blank">
+                      <a href={data ? data.ACF.redes_sociales.whatsapp ? "wa.me/" + data.ACF.redes_sociales.whatsapp : "" : "/vinculate"} target="_blank">
                         <Image 
                           src="/social/icono-whatsapp-color.svg"
                           width={80}
@@ -94,34 +110,34 @@ export default function Vinculate() {
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/ccibermedia/" target="_blank">
+                      <a href={data ? data.ACF.redes_sociales.instagram : "/"} target="_blank">
                         <Image 
                           src="/social/icono-instagram-color.svg"
                           width={80}
                           height={80}
-                          alt="Icono de instagram color"
+                          alt="Instagram del colectivo cultural cibermedia"
                           className="contact-logos"
                         />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/ccibermedia/" target="_blank">
+                      <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                         <Image 
                           src="/social/icono-youtube-color.svg"
                           width={80}
                           height={80}
-                          alt="Icono de youtube color"
+                          alt="Canal de youtube del colectivo cultural cibermedia"
                           className="contact-logos"
                         />
                       </a>
                     </li>
                     <li>
-                      <a href="https://twitter.com/CCibermedia" target="_blank">
+                      <a href={data ? data.ACF.redes_sociales.twitter : "/"} target="_blank">
                         <Image 
                           src="/social/icono-twitter-color.svg"
                           width={80}
                           height={80}
-                          alt="Icono de twitter color"
+                          alt="Twitter del colectivo cultural cibermedia"
                           className="contact-logos"
                         />
                       </a>

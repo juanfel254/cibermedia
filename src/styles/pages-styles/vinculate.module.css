@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.vinculate_text {
+  text-align: center;
+  font-size: 25px;
+}
+
 .main_logo {
   width: 80%;
   height: fit-content;
