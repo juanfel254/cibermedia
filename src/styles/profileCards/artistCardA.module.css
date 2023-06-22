@@ -4,6 +4,14 @@
   font-size: 45px;
 }
 
+.artist_name {
+  font-size: 1.7vw;
+}
+
+.artist_description {
+  font-size: 1.1vw;
+}
+
 .cards_container {
   display: flex;
   flex-direction: row;
@@ -21,19 +29,11 @@
   width: 46%;
   margin: 0;
   padding: 10px;
-  border-radius: 100px 0 100px 0;
+  border-radius: 6vw 0 6vw 0;
 }
 
 .card_container ul li {
   padding: 0 18px 10px 18px;
-}
-
-.card_container h3 {
-  font-size: 30px;
-}
-
-.card_container p {
-  font-size: 20px;
 }
 
 .card_container p, .card_container h3 {
@@ -45,8 +45,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 180px;
+  width: 10vw;
+  height: 10vw;
   border: 8px solid rgba(45, 26, 71, 1);
   border-radius: 100%;
   text-align: center;
@@ -56,6 +56,7 @@
   text-decoration: none;
   color: var(--purple);
   transition: 0.5s;
+  font-size: 1vw;
 }
 
 .card_link:hover {
@@ -75,7 +76,7 @@
   font-size: 105%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   .no_artists {
     font-size: 16px;
   }
@@ -95,11 +96,11 @@
     border: 4px solid rgba(45, 26, 71, 1);
   }
 
-  .card_container h3 {
-    font-size: 5.5vw;
+  .card_container .artist_name {
+    font-size: 5.3vw;
   }
 
-  .card_container p {
-    font-size: 3vw;
+  .card_container .artist_description {
+    font-size: 2.26vw;
   }
 }

@@ -126,4 +126,10 @@
   .visual_desc div iframe {
     min-height: 300px;
   }
+  .artist_desc_container .back_link {
+    text-align: start;
+    margin-right: 90%;
+    font-size: 25px;
+    text-decoration: underline;
+  }
 }

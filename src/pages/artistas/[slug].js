@@ -45,7 +45,7 @@ export default function ArtistaIndv({ artista }){
       
       <div className={`${styles.portfolio_container} main-container`}>
         <section className={styles.artist_desc_container}>
-          <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
+        <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
           <center>
             <Image 
               src={artista.ACF.galeria_fotos.foto_1} 
