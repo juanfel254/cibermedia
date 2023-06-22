@@ -82,6 +82,9 @@ export default function ArtistaIndv({ artista }){
             <p className={styles.visual_desc}>
               {artista.ACF.sinopsis_video}
             </p>
+            <p>
+              {artista.ACF.creditos_video}
+            </p>
           </li>
           <li className={styles.sound_project_container}>
             {artista.ACF.archivo_audio && <audio controls controlsList="nodownload"  className="audio-player">  
@@ -89,6 +92,9 @@ export default function ArtistaIndv({ artista }){
             </audio>}
             <p className={styles.sound_desc}>
               {artista.ACF.sinopsis_audio}
+            </p>
+            <p>
+            {artista.ACF.creditos_audio}
             </p>
           </li>
         </ul>
