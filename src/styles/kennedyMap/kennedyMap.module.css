@@ -75,19 +75,22 @@
   .artists_container ul {
     display: flex;
     width: 100%;
-    overflow-y: scroll;
+    overflow-x: auto;
+    overflow-y: none;
     min-height: 60px;
     max-height: 400px;
     height: 100%;
     gap: 57px;
     padding-right: 0px;
+    margin-bottom: 10px;
   }
 
   .artists_container ul li ul {
     display: block;
-    height: 150px;
-    overflow-y:hidden;
+    height: 100%;
+    overflow:hidden;
     padding-right: 0px;
+    margin: 0;
   }
 }
 
@@ -108,15 +111,22 @@
     width: 100%;
   }
   .artists_container ul li ul {
-    display: block;
-    height: 150px;
-    overflow-y:hidden;
+    display: flex;
+    height: 100%;
+    overflow:hidden;
     padding-right: 0px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+    height: 29vw;
   }
+
   .artists_container ul {
     display: flex;
     width: 100%;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: none;
     min-height: 60px;
     max-height: 510px;
     height: 100%;
