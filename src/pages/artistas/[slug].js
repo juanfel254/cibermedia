@@ -3,11 +3,11 @@ import Image from "next/image"
 import styles from "@/styles/pages-styles/artista.module.css"
 import Link from "next/link";
 import Tilt from 'react-parallax-tilt';
+import { useEffect, useRef, useState } from "react";
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
   const data = await res.json();
-
   const paths = data.map(artista => {
     return {
       params: { slug: artista.slug }
@@ -25,7 +25,6 @@ export const getStaticProps = async (context) => {
   const url = 'https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?slug=' + slug;
   const res = await fetch(url);
   const data = await res.json();
-
   return {  
     props: { artista: data[0] }}
 }
@@ -34,25 +33,25 @@ export default function ArtistaIndv({ artista }){
 
   const getGold = (youTubeLink) => youTubeLink.split("/")[3]
 
-  getGold("https://youtu.be/ylJkitCPFAc")
   return (
     <>
       <Head>
         <title>{artista.ACF.nombre_artista}</title>
-        <meta name="description" content="Información individual del artista" />
+        <meta name="description" content={`Portafolio de ${artista.ACF.nombre_artista}: ${artista.ACF.descripcion_artista}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
       <div className={`${styles.portfolio_container} main-container`}>
-        <section className={styles.artist_desc_container}>
+        <div className={styles.artist_desc_auxiliar_container}>
+        <section className={`${styles.artist_desc_container}`} >
         <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
           <center>
             <Tilt scale={1.05} gyroscope={true}>
             <Image 
               src={artista.ACF.galeria_fotos.foto_1} 
-              width={350}
-              height={350}
+              width={300}
+              height={300}
               alt="artist image"
               className={styles.artist_picture}
               />
@@ -73,6 +72,8 @@ export default function ArtistaIndv({ artista }){
             {artista.ACF.descripcion_artista}
           </p>
         </section>
+        </div>
+        
         <ul className={styles.projects_container}>
           <li className={styles.project_title_container}>
             <h2 className={styles.project_title}>
