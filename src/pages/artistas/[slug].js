@@ -2,6 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import styles from "@/styles/pages-styles/artista.module.css"
 import Link from "next/link";
+import Tilt from 'react-parallax-tilt';
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
@@ -47,12 +48,15 @@ export default function ArtistaIndv({ artista }){
         <section className={styles.artist_desc_container}>
         <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
           <center>
+            <Tilt scale={1.05} gyroscope={true}>
             <Image 
               src={artista.ACF.galeria_fotos.foto_1} 
               width={350}
               height={350}
               alt="artist image"
+              className={styles.artist_picture}
               />
+            </Tilt>
           </center>
           <h2 className={styles.artist_name}>
             {artista.title.rendered}

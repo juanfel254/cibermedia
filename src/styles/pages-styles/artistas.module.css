@@ -18,19 +18,60 @@
   gap: 10px;
 }
 
+.search_bar_container {
+  width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--purple);
+  border-radius: 25px;
+  border: 2px var(--yellow) solid;
+  padding: 0px 15px;
+  transition: 0.5s;
+}
+
+.search_bar_container input {
+  width: 100%;
+  height: 30px;
+  font-size: 18px;
+  color: var(--white);
+  background-color: var(--purple);
+  border: 0px solid;
+  margin: 0px 0;
+  padding: 27px 0;
+}
+
+.search_bar_container input:focus{
+  outline: none;
+}
+
 .filters_container select {
   width: 250px;
   color: var(--white);
-  font-size: 22px;
+  font-size: 20px;
   border-radius: 25px;
-  background-color: transparent;
+  background-color: var(--purple);
   border: 2px var(--yellow) solid;
-  padding: 21px;
+  padding: 15px 20px;
+  transition: 0.3s;
+}
+
+.filters_container select:hover, .search_bar_container:hover, .search_bar_container:has(input:focus){
+  cursor: pointer;
+  box-shadow: 0px 0px 20px 1px var(--yellow);
+  transition: 0.3s;
+}
+
+
+
+.filters_container select::after {
+  border: 1px solid var(--yellow);
 }
 
 .filters_container select option {
   background-color: var(--purple);
-  color: var(--yellow);
+  color: var(--white);
   font-family: Rubik;
 }
 
