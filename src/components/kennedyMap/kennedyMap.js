@@ -171,11 +171,10 @@ export default function KennedyMap() {
 
   return (
     <div>
-      <p className={styles.message}>Toca el mapa o haz click para conocer más detalles</p>
       <div className={styles.artists_map_container}>
         <div ref={mapContainer} className={styles.map_container} />
         <div className={`${styles.artists_container}`}>
-          {clicks ? filtered ? <ArtistsCardsA artistas={filtered} /> : null : null}
+          {clicks ? filtered ? <ArtistsCardsA artistas={filtered} /> : null : <h3 className={styles.message}>Haz click en el mapa para conocer más detalles</h3>}
         </div>
       </div>
     </div>
