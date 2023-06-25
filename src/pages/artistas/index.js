@@ -95,6 +95,7 @@ const Artistas = () => {
                 id="searchBar"
                 className={styles.search_bar}
                 placeholder="Nombre, perfil y/o upz"
+                autocomplete="off"
                 value={searchBarValue}
                 onChange={(e) => setSearchBarValue(e.target.value)}
               />
