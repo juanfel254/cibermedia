@@ -74,7 +74,14 @@ ul, li {
 }
 
 .cibermedia-home-logo {
-  height: 11vw;
+  height: 23vw;
+  width: 36vw;
+}
+
+.support-logo {
+  width: 20vw;
+  height: 16vw;
+
 }
 
 .contact-logos {

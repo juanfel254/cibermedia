@@ -36,29 +36,26 @@ export default function Home() {
             <ul className={styles.supported_by_logos}>
               <li>
                 <Image
-                  src="/main-logos/logotipo-la-bogota-que-estamos-construyendo.svg"
-                  width={200}
-                  height={120}
-                  alt="Logo de la Bogotá que estamos construyendo"
-                  className="home-logo"
-                />  
-              </li>
-              <li>
-                <Image
                   src="/main-logos/logo-kennedy-es-cultura-local.svg"
-                  width={200}
-                  height={120}
+                  width={400}
+                  height={240}
                   alt="Logo de Kennedy es cultura local"
-                  className="home-logo"
+                  className="support-logo"
                 />  
               </li>
-              <li>
+            </ul>
+          </div>
+          <div className={styles.special_thanks_container}>
+            <h2>
+              Agradecimientos Especiales
+            </h2>
+            <ul className={styles.special_thanks_logos}>
+            <li>
                 <Image
                   src="/main-logos/logotipo-les-lumiere-blanco.svg"
                   width={200}
                   height={120}
                   alt="Logo de la Corporación Cultural Les Lumiere"
-                  className="home-logo"
                 />  
               </li>
               <li>
@@ -67,11 +64,9 @@ export default function Home() {
                   width={200}
                   height={120}
                   alt="Logo de Nakuma Cultura Creativa"
-                  className="home-logo"
                 />  
               </li>
             </ul>
-
           </div>
         </section>
 
