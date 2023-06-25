@@ -2,39 +2,62 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
 import styles from "@/styles/pages-styles/artistas.module.css";
+import Image from "next/image";
 
 const Artistas = () => {
-  const [artists, setArtists] = useState('');
+  const [artists, setArtists] = useState("");
   const [selectedProfile, setSelectedProfile] = useState("");
   const [selectedUpz, setSelectedUpz] = useState("");
   const [filtered, setFiltered] = useState(null);
   const [upzCategories, setUpzCategories] = useState(null);
   const [profilesCategories, setProfilesCategories] = useState(null);
+  const [searchBarValue, setSearchBarValue] = useState("");
 
-  function handleSelectChange(e) {
+  const handleSelectChange = (e) => {
     const { name, value } = e.target;
     if (name === "profile") {
       setSelectedProfile(value);
     } else if (name === "upz") {
       setSelectedUpz(value);
     }
-  }
+  };
 
-  function handleResetFilter() {
+  const handleResetFilter = () => {
     setSelectedProfile("");
     setSelectedUpz("");
-  }
+    setSearchBarValue("");
+  };
+
+  const filterArtists = (artists) => {
+    const keywords = searchBarValue.toLowerCase().split(" ");
+    return artists.filter((artist) => {
+      const matchProfile =
+        selectedProfile !== "" ? artist.perfil.includes(selectedProfile) : true;
+      const matchUpz = selectedUpz !== "" ? artist.upz === selectedUpz : true;
+      const matchSearchBar =
+        searchBarValue === ""
+          ? true
+          : keywords.every((keyword) =>
+              [artist.nombre_artista.toLowerCase(), artist.upz.toLowerCase(), ...artist.perfil.map((p) => p.toLowerCase())].some((value) =>
+                value.includes(keyword)
+              )
+            );
+      return matchProfile && matchUpz && matchSearchBar;
+    });
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
+        const res = await fetch(
+          "https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100"
+        );
         const data = await res.json();
-        setProfilesCategories([...new Set(data.flatMap(portafolio => portafolio.perfil))]);
-        setUpzCategories([...new Set(data.map(portafolio => portafolio.upz))]);
+        setProfilesCategories([...new Set(data.flatMap((portafolio) => portafolio.perfil))]);
+        setUpzCategories([...new Set(data.map((portafolio) => portafolio.upz))]);
         setArtists(data);
       } catch (error) {
-        console.log('Error al obtener los datos de la API:', error);
+        console.log("Error al obtener los datos de la API:", error);
       }
     }
     fetchData();
@@ -42,16 +65,10 @@ const Artistas = () => {
 
   useEffect(() => {
     if (artists) {
-      let filteredArtists = artists;
-      if (selectedProfile !== "" || selectedUpz !== "") {
-        filteredArtists = artists.filter((artist) =>
-          (selectedProfile !== "" ? artist.ACF.perfil.includes(selectedProfile) : true) &&
-          (selectedUpz !== "" ? artist.ACF.upz.includes(selectedUpz) : true)
-        );
-      }
+      const filteredArtists = filterArtists(artists);
       setFiltered(filteredArtists);
     }
-  }, [artists, selectedProfile, selectedUpz]);
+  }, [artists, selectedProfile, selectedUpz, searchBarValue]);
 
   return (
     <>
@@ -65,22 +82,45 @@ const Artistas = () => {
         <h1 className="main-title">Artistas de la Localidad</h1>
         <ul className={styles.cards_filter_container}>
           <section className={styles.filters_container}>
+            <div className={styles.search_bar_container}>
+              <Image
+                src="/icons/lupa.svg"
+                alt="magnifying glass icon"
+                width={20}
+                height={20}
+              />
+              <input
+                name="searchBar"
+                type="text"
+                id="searchBar"
+                className={styles.search_bar}
+                placeholder="Nombre, perfil y/o upz"
+                value={searchBarValue}
+                onChange={(e) => setSearchBarValue(e.target.value)}
+              />
+            </div>
             <div>
               <h3 className={styles.filter_title}>Perfil</h3>
               <select onChange={handleSelectChange} name="profile" value={selectedProfile}>
-                <option value={""}>Todos</option>
-                {profilesCategories ? profilesCategories.map((category, index) =>
-                  <option className={styles.option_select} key={category.slug} value={category.name}>{category}</option>
-                ) : "Cargando"}
+                <option value="">Todos</option>
+                {profilesCategories &&
+                  profilesCategories.map((category, index) => (
+                    <option className={styles.option_select} key={index} value={category}>
+                      {category}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
               <h3 className={styles.filter_title}>UPZ</h3>
               <select onChange={handleSelectChange} name="upz" value={selectedUpz}>
-                <option value={""}>Todos</option>
-                {upzCategories ? upzCategories.map((category, index) =>
-                  <option className={styles.option_select} key={category.slug} value={category.name}>{category}</option>
-                ) : "Cargando"}
+                <option value="">Todos</option>
+                {upzCategories &&
+                  upzCategories.map((category, index) => (
+                    <option className={styles.option_select} key={index} value={category}>
+                      {category}
+                    </option>
+                  ))}
               </select>
             </div>
             <button className={styles.reset_button} onClick={handleResetFilter}>
@@ -94,6 +134,6 @@ const Artistas = () => {
       </div>
     </>
   );
-}
+};
 
 export default Artistas;

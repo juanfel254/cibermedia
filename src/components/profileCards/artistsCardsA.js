@@ -11,14 +11,16 @@ export default function ArtistsCardsA({ artistas }) {
   return (
     <ul className={styles.cards_container}>
       {artistas.length !== 0 ? artistas.map((artista, index) => (
-        <li key={index} className={styles.card_container}>      
-          <Image 
-            width={250}
-            height={250}  
-            src={artista.ACF.galeria_fotos.foto_1}
-            alt="Foto de artista"
-            className={styles.picture_container}
-          />
+        <li key={index} className={styles.card_container}>
+          <Link href={`/artistas/${artista.slug}`} className={styles.img_link}>
+            <Image 
+              width={250}
+              height={250}  
+              src={artista.ACF.galeria_fotos.foto_1}
+              alt="Foto de artista"
+              className={styles.picture_container}
+            />
+          </Link>      
           <ul>
             <li>
               <Link href={`/artistas/${artista.slug}`} className={styles.card_link} key={artista.id}>
