@@ -4,6 +4,7 @@ import styles from "@/styles/pages-styles/artista.module.css"
 import Link from "next/link";
 import Tilt from 'react-parallax-tilt';
 import { useEffect, useRef, useState } from "react";
+import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
@@ -92,9 +93,7 @@ export default function ArtistaIndv({ artista }){
             </p>
           </li>
           <li className={styles.sound_project_container}>
-            {artista.ACF.archivo_audio && <audio controls controlsList="nodownload"  className="audio-player">  
-              <source src={artista.ACF.archivo_audio}/>
-            </audio>}
+            {artista.ACF.archivo_audio && <AudioPlayer src={artista.ACF.archivo_audio}/>}
             <p className={styles.sound_desc}>
               {artista.ACF.sinopsis_audio}
             </p>

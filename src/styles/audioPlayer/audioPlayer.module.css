@@ -1,0 +1,35 @@
+.audio_player {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-direction: column;
+  background-color: var(--white);
+}
+
+.waveform_image {
+  max-width: -webkit-fill-available;
+  z-index: 5;
+  position: absolute;
+  width: 64.9vw;
+  padding-right: 14px;
+}
+
+.audio_waveform {
+  z-index: 0;
+  height: 50px;
+  background-color: yellow;
+  position: relative;
+}
+
+.audio_controls {
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.play_pause, .replay {
+  padding: 10px;
+  font-size: 16px;
+}
