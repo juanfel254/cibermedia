@@ -1,4 +1,65 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
+const AudioWaveform = ({ src }) => {
+  const waveformRef = useRef(null);
+
+  useEffect(() => {
+    let WaveSurfer = null;
+    let TimelinePlugin = null;
+    let CursorPlugin = null;
+
+    const loadWavesurfer = async () => {
+      if (!WaveSurfer) {
+        WaveSurfer = await import('wavesurfer.js');
+      }
+
+      if (!TimelinePlugin) {
+        TimelinePlugin = await import('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js');
+      }
+
+      if (!CursorPlugin) {
+        CursorPlugin = await import('wavesurfer.js/dist/plugin/wavesurfer.cursor.min.js');
+      }
+
+      const wavesurfer = WaveSurfer.default.create({
+        container: waveformRef.current,
+        waveColor: 'violet',
+        progressColor: 'purple',
+      });
+
+      wavesurfer.load(src);
+
+      wavesurfer.on('ready', () => {
+        // Waveform is ready
+      });
+
+      // Add plugins if desired
+      wavesurfer.addPlugin(TimelinePlugin.default.create({ container: '#timeline' }));
+      wavesurfer.addPlugin(CursorPlugin.default.create({ showTime: true, opacity: 1 }));
+
+      // Clean up on component unmount
+      return () => {
+        wavesurfer.destroy();
+      };
+    };
+
+    // Check if running on the client-side
+    if (typeof window !== 'undefined') {
+      loadWavesurfer();
+    }
+  }, [src]);
+
+  return (
+    <div>
+      <div ref={waveformRef} />
+      <div id="timeline" />
+    </div>
+  );
+};
+
+export default AudioWaveform;
+
+/* import React, { useState, useEffect, useRef } from 'react';
 import styles from "@/styles/audioPlayer/audioPlayer.module.css"
 import Image from 'next/image';
 
@@ -108,4 +169,4 @@ const AudioPlayer = ({ src }) => {
   );
 };
 
-export default AudioPlayer;
+export default AudioPlayer; */
