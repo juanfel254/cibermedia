@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+/* import { useEffect, useRef } from 'react';
 
 const AudioWaveform = ({ src }) => {
   const waveformRef = useRef(null);
@@ -25,6 +25,7 @@ const AudioWaveform = ({ src }) => {
         container: waveformRef.current,
         waveColor: 'violet',
         progressColor: 'purple',
+        fetchParams: { mode: "no=cors" }
       });
 
       wavesurfer.load(src);
@@ -57,9 +58,9 @@ const AudioWaveform = ({ src }) => {
   );
 };
 
-export default AudioWaveform;
+export default AudioWaveform; */
 
-/* import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from "@/styles/audioPlayer/audioPlayer.module.css"
 import Image from 'next/image';
 
@@ -169,4 +170,4 @@ const AudioPlayer = ({ src }) => {
   );
 };
 
-export default AudioPlayer; */
+export default AudioPlayer;

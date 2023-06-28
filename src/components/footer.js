@@ -34,7 +34,7 @@ export default function Footer () {
             <li>
               <a href={data ? data.ACF.redes_sociales.instagram : "/"} target="_blank">
                 <Image 
-                  src="/social/icono-instagram-morado.svg"
+                  src="/social/instagram-morado.svg"
                   width={50}
                   height={50}
                   alt="Instagram del colectivo cultural cibermedia"
@@ -44,7 +44,7 @@ export default function Footer () {
             <li>
               <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                 <Image 
-                  src="/social/icono-youtube-morado.svg"
+                  src="/social/youtube-morado.svg"
                   width={50}
                   height={50}
                   alt="Icono de youtube morado"
@@ -54,7 +54,7 @@ export default function Footer () {
             <li>
               <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                 <Image 
-                  src="/social/icono-twitter-morado.svg"
+                  src="/social/twitter-morado.svg"
                   width={50}
                   height={50}
                   alt="Icono de twitter morado"

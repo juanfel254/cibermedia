@@ -4,6 +4,7 @@
   --purple: #2D1A47;
   --yellow: #FEEA27;
   --light-blue: #38ff98;
+  --light-black-opacity: rgba(29, 26, 37, .8);
 }
 
 @font-face {
@@ -57,6 +58,7 @@ ul, li {
 .my-link:hover {
   transition: 0.5s;
   font-weight: 800;
+  cursor: pointer;
 }
 
 .my-link:visited, .my-link:link, .my-link:focus, .my-link:active {

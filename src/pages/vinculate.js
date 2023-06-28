@@ -101,7 +101,7 @@ export default function Vinculate() {
                     <li>
                       <a href={data ? data.ACF.redes_sociales.whatsapp ? "wa.me/" + data.ACF.redes_sociales.whatsapp : "" : "/vinculate"} target="_blank">
                         <Image 
-                          src="/social/icono-whatsapp-color.svg"
+                          src="/social/whatsapp-color.svg"
                           width={80}
                           height={80}
                           alt="Icono de instagram color"
@@ -112,7 +112,7 @@ export default function Vinculate() {
                     <li>
                       <a href={data ? data.ACF.redes_sociales.instagram : "/"} target="_blank">
                         <Image 
-                          src="/social/icono-instagram-color.svg"
+                          src="/social/instagram-color.svg"
                           width={80}
                           height={80}
                           alt="Instagram del colectivo cultural cibermedia"
@@ -123,7 +123,7 @@ export default function Vinculate() {
                     <li>
                       <a href={data ? data.ACF.redes_sociales.youtube : "/"} target="_blank">
                         <Image 
-                          src="/social/icono-youtube-color.svg"
+                          src="/social/youtube-color.svg"
                           width={80}
                           height={80}
                           alt="Canal de youtube del colectivo cultural cibermedia"
@@ -134,7 +134,7 @@ export default function Vinculate() {
                     <li>
                       <a href={data ? data.ACF.redes_sociales.twitter : "/"} target="_blank">
                         <Image 
-                          src="/social/icono-twitter-color.svg"
+                          src="/social/twitter-color.svg"
                           width={80}
                           height={80}
                           alt="Twitter del colectivo cultural cibermedia"
