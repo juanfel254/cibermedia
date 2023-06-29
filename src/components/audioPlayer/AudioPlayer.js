@@ -139,32 +139,49 @@ const AudioPlayer = ({ src }) => {
 
   return (
     <>
-    <div className={styles.audio_player}>
-      <div className={styles.audio_waveform} style={{ paddingRight: waveformWidth + "%" }}></div>
-        <img 
-          src="/backgrounds/Imagen4.png"
-          width={800}
-          height={50} 
-          alt="Waveform" 
-          className={styles.waveform_image}
-          onClick={handleImageClick} 
-        />
-      <audio ref={audioRef} src={src}></audio>
-    </div>
-    <div className={styles.audio_controls}>
-      <button className={styles.backward} onClick={handleBackward}>
-        Retroceder -5s
-      </button>
-      <button className={styles.play_pause} onClick={handlePlayPause}>
-        {isPlaying ? 'Pausa' : 'Reproducir'}
-      </button>
-      <button className={styles.replay} onClick={handleReplay}>
-        Replay
-      </button>
-      <button className={styles.forward} onClick={handleForward}>
-        Avanzar +5s
-      </button>
+    <div className={styles.audio_player_container}>
+      <div className={styles.audio_player}>
+        <div className={styles.audio_waveform} style={{ paddingRight: waveformWidth + "%" }}></div>
+          <img 
+            src="/backgrounds/Imagen4.png"
+            width={800}
+            height={50} 
+            alt="Waveform" 
+            className={styles.waveform_image}
+            onClick={handleImageClick} 
+          />
+        <audio ref={audioRef} src={src}></audio>
+      </div>
 
+      <div className={styles.audio_controls}>
+
+        <button 
+          className={styles.play_pause} 
+          onClick={currentTime === duration ? handleReplay : handlePlayPause}>
+          { currentTime !== duration ? 
+            <Image
+              src={`/icons/${ isPlaying ? 'Pause-button' : 'Play-button'}.png`}
+              alt='Play-pause button'
+              height={50}
+              width={50}
+            /> : 
+            <Image
+              src={`/icons/Replay-button.svg`}
+              alt='Replay button'
+              height={50}
+              width={50}
+            />
+          }
+        </button>
+      </div>
+    </div>
+    <div className={styles.time_controls}>
+        <button className={styles.backward} onClick={handleBackward}>
+          -5s
+        </button>
+        <button className={styles.forward} onClick={handleForward}>
+          +5s
+        </button>
     </div>
     </>
   );

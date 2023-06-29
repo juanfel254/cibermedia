@@ -32,7 +32,17 @@ export const getStaticProps = async (context) => {
 
 export default function ArtistaIndv({ artista }){
 
+  const [returnButton, setReturnButton] = useState(false);
+
   const getGold = (youTubeLink) => youTubeLink.split("/")[3]
+
+  useEffect(()=> {
+    if(window.innerWidth < 1050) {
+      setReturnButton(true)
+    } else {
+      setReturnButton(false)
+    }
+  }, [returnButton])
 
   const renderRedesSocialesA = (redesSociales) => {
     if (redesSociales) {
@@ -80,6 +90,7 @@ export default function ArtistaIndv({ artista }){
               height={300}
               alt="artist image"
               className={styles.artist_picture}
+              id="artist-desc"
               />
             </Tilt>
           </center>
@@ -114,6 +125,20 @@ export default function ArtistaIndv({ artista }){
         </div>
         
         <ul className={styles.projects_container}>
+
+          {returnButton ? 
+            <li className={styles.return_button}>
+              <Link href={"#artist-desc"} >
+                <Image
+                  alt="Botón de retorno"
+                  width={45}
+                  height={45}
+                  src={'/icons/Replay-button.png'}
+                />
+              </Link>
+            </li>
+            : null}
+
           <li className={styles.project_title_container}>
             <h2 className={styles.project_title}>
               {artista.ACF.nombre_del_proyecto}

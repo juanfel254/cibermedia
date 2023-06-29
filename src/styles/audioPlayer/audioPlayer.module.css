@@ -1,9 +1,17 @@
+.audio_player_container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .audio_player {
   display: flex;
   align-items: flex-start;
   margin-bottom: 20px;
-  flex-direction: column;
+  flex-direction: row;
   background-color: var(--white);
+  width: 51vw;
 }
 
 .waveform_image {
@@ -14,6 +22,7 @@
   padding-right: 14px;
   /* max-width: 62.2vw; */
   margin-right: 26px;
+  width: 100%;
 }
 
 .audio_waveform {
@@ -35,4 +44,11 @@
 .play_pause, .replay {
   padding: 10px;
   font-size: 16px;
+}
+
+.time_controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

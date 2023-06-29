@@ -79,7 +79,7 @@ const Artistas = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="main-container">
-        <h1 className="main-title">Artistas de la Localidad</h1>
+        <h1 className="main-title">Artistas de la Localidad de Kennedy</h1>
         <ul className={styles.cards_filter_container}>
           <section className={styles.filters_container}>
             <div className={styles.search_bar_container}>
