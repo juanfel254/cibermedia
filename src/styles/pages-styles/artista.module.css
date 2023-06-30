@@ -7,7 +7,7 @@
 }
 
 .back_link {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: 600;
   color: var(--purple);
 }
@@ -20,6 +20,7 @@
 .artist_desc_auxiliar_container {
   width: 33%;
   background-color: var(--yellow);
+  margin: 20px;
 }
 
 .artist_desc_container {
@@ -34,11 +35,17 @@
   display: flex;
   flex-direction: column;
   justify-content: initial;
-  width: 66%;
+  width: 67%;
+  position: relative;
 }
 
-.artist_desc_container, .projects_container li {
+.artist_desc_container,
+.projects_container li {
   padding: 20px;
+}
+
+.projects_container li {
+  margin: 20px;
 }
 
 .artist_picture {
@@ -47,26 +54,102 @@
   box-shadow: 0px 0px 20px 5px var(--black);
 }
 
-
-.artist_desc {
-  font-size: 16px;
+.artist_name {
+  font-family: compress;
+  font-weight: 500;
+  font-size: 40px;
+  margin: 10px 0 10px 0;
   text-align: center;
+}
+
+.artist_tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-size: 1.1vw;
+  margin: 10px 0;
+  cursor: default;
+}
+
+.artist_tags .tag {
+  margin: 5px 0;
+  color: var(--yellow);
+  background-color: var(--purple);
+  border-radius: 15px;
+  padding: 3px 10px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 10px 1px var(--black);
+}
+
+.artist_tags .tag:hover {
+  transition: 0.3s;
+  cursor: default;
+}
+
+.artist_text_desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: bold;
+  gap: 15px;
+}
+
+.artist_text_desc > * {
+  margin: 0;
+}
+
+.artist_text_title {
+  font-size: 15px;
+}
+
+.artist_text_desc .artist_text {
+  font-size: 14px;
 }
 
 .artist_networks {
   display: flex;
-  justify-content: row;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-.artist_networks .artist_network:visited, .artist_network:link, .artist_network:focus, .artist_network  :active {
-  color: var(--purple) !important; 
+.artist_networks a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: underline;
+  font-weight: 600;
+  gap: 10px;
 }
 
-.visual_desc {
-  font-size: 25px;
+.artist_networks .artist_network:visited,
+.artist_network:link,
+.artist_network:focus,
+.artist_network:active {
+  color: var(--purple) !important;
 }
 
+.email_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.email_container .email {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.return_button {
+  z-index: 10;
+  position: sticky;
+  bottom: 10px;
+}
 
 .project_title_container {
   padding: 0;
@@ -83,32 +166,33 @@
 }
 
 .visual_project_container {
-  background-color: var(--purple);
+  background-color: var(--light-black-opacity);
 }
 
 .sound_project_container {
-  background-color: var(--black);
+  background-color: var(--light-black-opacity);
 }
 
-.visual_project_container, .sound_project_container {
+.visual_project_container,
+.sound_project_container {
   height: -webkit-fill-available;
 }
 
-.artist_name {
-  font-family: compress;
-  font-weight: 500;
-  font-size: 40px;
-  margin: 0 0 20px 0;
-  text-align: center;
+.visual_desc {
+  font-size: 20px;
+  font-weight: normal;
 }
 
 .sound_desc {
   margin-bottom: 0;
-  font-size: 25px;
+  font-size: 20px;
 }
 
-.artist_desc, .visual_desc, .sound_desc {
+.artist_desc,
+.visual_desc,
+.sound_desc {
   font-weight: 500;
+  color: var(--white);
 }
 
 .visual_desc div iframe {
@@ -119,16 +203,40 @@
 
 @media only screen and (max-width: 1050px) {
   .portfolio_container {
-    padding: 0; 
+    padding: 0;
     flex-direction: column;
     text-align: center;
+    margin: 20px;
   }
-  .artist_desc_container, .artist_desc_auxiliar_container {
+  .artist_desc_container,
+  .artist_desc_auxiliar_container {
     width: 100%;
+    margin: 0;
   }
+
+  .artist_tags {
+    font-size: 3vw;
+  }
+
+  .artist_tags .tag {
+    margin: 5px 0;
+  }
+
+  .artist_text_desc .artist_text {
+    margin-top: 0;
+  }
+
   .projects_container {
     width: 100%;
+    height: fit-content;
+    position: relative; 
+    margin-top: 20px ;
   }
+
+  .projects_container li {
+    margin: 10px 0;
+  }
+
   .project_title {
     font-size: 35px;
   }
@@ -136,10 +244,11 @@
     font-size: 15px;
     text-align: center;
   }
-  .visual_desc, .sound_desc {
+  .visual_desc,
+  .sound_desc {
     font-size: 15px;
   }
-  
+
   .visual_desc div iframe {
     min-height: 300px;
   }
@@ -149,4 +258,6 @@
     font-size: 25px;
     text-decoration: underline;
   }
+
+  /* Estilos para el botón de retorno */
 }

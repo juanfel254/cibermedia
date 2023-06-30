@@ -4,6 +4,7 @@ import styles from "@/styles/pages-styles/artista.module.css"
 import Link from "next/link";
 import Tilt from 'react-parallax-tilt';
 import { useEffect, useRef, useState } from "react";
+import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
 
 export const getStaticPaths = async () => {
   const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
@@ -31,7 +32,42 @@ export const getStaticProps = async (context) => {
 
 export default function ArtistaIndv({ artista }){
 
+  const [artistPicture, setArtistPicture] = useState(artista.ACF.galeria_fotos.foto_1)
+  const [returnButton, setReturnButton] = useState(false);
+
   const getGold = (youTubeLink) => youTubeLink.split("/")[3]
+
+  useEffect(()=> {
+    if(window.innerWidth < 1050) {
+      setReturnButton(true)
+    } else {
+      setReturnButton(false)
+    }
+  }, [returnButton])
+
+  const renderRedesSocialesA = (redesSociales) => {
+    if (redesSociales) {
+      const enlacesRedesSociales = Object.entries(redesSociales)
+        .filter(([redSocial, data]) => typeof redSocial === 'string' && data !== null) // Filtrar las claves de cadena y datos no nulos
+        .map(([redSocial, data]) => {
+          if (data) {
+            const redSocialName = redSocial.replace(/\_\d+$/, ''); // Eliminar el número al final si existe
+            return (
+              <Link href={redSocialName === 'whatsapp' ? `https://wa.me/${data}` : data.url} className={`${styles.social_network} my-link`} target="_blank" key={redSocial}>
+                <Tilt scale={1.3}>
+                  <Image
+                    src={`/social/${redSocialName}-morado.svg`}
+                    alt={`ícono de ${redSocialName}`}
+                    width={70}
+                    height={70}
+                  />
+                </Tilt>
+              </Link>
+            );
+          } return null
+        }); return <div className={styles.artist_networks}>{enlacesRedesSociales}</div>;
+    } return null;
+  };
 
   return (
     <>
@@ -45,36 +81,61 @@ export default function ArtistaIndv({ artista }){
       <div className={`${styles.portfolio_container} main-container`}>
         <div className={styles.artist_desc_auxiliar_container}>
         <section className={`${styles.artist_desc_container}`} >
+
         <Link href="/artistas" className={`my-link ${styles.back_link}`}>{"<<"}</Link>
           <center>
             <Tilt scale={1.05} gyroscope={true}>
             <Image 
-              src={artista.ACF.galeria_fotos.foto_1} 
+              src={artistPicture} 
               width={300}
               height={300}
               alt="artist image"
               className={styles.artist_picture}
+              id="artist-desc"
               />
             </Tilt>
           </center>
+
           <h2 className={styles.artist_name}>
             {artista.title.rendered}
           </h2>
-          <ul className={styles.artist_networks}>
-            {/* artista.ACF.redes_sociales.instagram !== "" ? 
-            <li className={`${styles.artist_network} my-link`}> 
-              <a target="_blank" href={artista.ACF.redes_sociales.instagram}>
-                {artista.acf.redes_sociales.instagram.title}
-              </a>
-            </li> : "" */}
-          </ul>
-          <p className={styles.artist_desc}>
-            {artista.ACF.descripcion_artista}
-          </p>
+
+          <div className={styles.artist_tags}>
+            {artista.perfil.map((tag, index) => {
+              return <Tilt scale={1.2} tiltReverse={true} key={index}><p className={styles.tagB} >#{tag}</p></Tilt>
+            })}
+          </div>
+
+{/*           <div className={styles.artist_tags}>
+            {artista.perfil.map((tag, index) => {
+              return <Tilt tiltReverse={true} key={index}><p className={styles.tag} >#{tag}</p></Tilt>
+            })}
+          </div> */}
+
+          <div className={styles.artist_text_desc}>
+            <p className={styles.artist_text}>{artista.ACF.descripcion_artista}</p>
+          </div>
+
+          <div className={styles.email_container}>
+            <p className={styles.email}>{artista.ACF.correo_electronico ? artista.ACF.correo_electronico : null}</p>
+          </div>
+
+          {renderRedesSocialesA(artista.acf.redes_sociales)}
+          
         </section>
         </div>
         
         <ul className={styles.projects_container}>
+        {/* returnButton ? 
+              <Link href={"#artist-desc"} className={styles.return_button}>
+                <Image
+                  alt="Botón de retorno"
+                  width={45}
+                  height={45}
+                  src={'/icons/Replay-button.svg'}
+                />
+              </Link>
+            : null */}
           <li className={styles.project_title_container}>
             <h2 className={styles.project_title}>
               {artista.ACF.nombre_del_proyecto}
@@ -92,9 +153,7 @@ export default function ArtistaIndv({ artista }){
             </p>
           </li>
           <li className={styles.sound_project_container}>
-            {artista.ACF.archivo_audio && <audio controls controlsList="nodownload"  className="audio-player">  
-              <source src={artista.ACF.archivo_audio}/>
-            </audio>}
+            {artista.ACF.archivo_audio && <AudioPlayer src={artista.ACF.archivo_audio}/>}
             <p className={styles.sound_desc}>
               {artista.ACF.sinopsis_audio}
             </p>
