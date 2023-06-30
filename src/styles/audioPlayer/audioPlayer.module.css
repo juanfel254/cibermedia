@@ -114,4 +114,7 @@
     width: 15px;
     height: 15px;
   }
+  .waveform_image {
+    margin-right: 1vw;
+  }
 }
