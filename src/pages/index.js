@@ -35,13 +35,20 @@ export default function Home() {
             <h2>Con el apoyo de</h2>
             <ul className={styles.supported_by_logos}>
               <li>
-                <Image
-                  src="/main-logos/logo-kennedy-es-cultura-local.svg"
-                  width={400}
-                  height={240}
-                  alt="Logo de Kennedy es cultura local"
-                  className="support-logo"
-                />  
+              <Image 
+                  src={"/main-logos/logo-alcaldia.svg"}
+                  width={250}
+                  height={140}
+                  alt='Logo de la Alcaldía Local de Kennedy'
+                  className='support-kennedy-logo'
+                /> 
+              <Image
+                src="/main-logos/logo-kennedy-es-cultura-local.svg"
+                width={400}
+                height={240}
+                alt="Logo de Kennedy es cultura local"
+                className="support-logo"
+              /> 
               </li>
             </ul>
           </div>

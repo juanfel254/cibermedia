@@ -32,6 +32,7 @@ export const getStaticProps = async (context) => {
 
 export default function ArtistaIndv({ artista }){
 
+  const [artistPicture, setArtistPicture] = useState(artista.ACF.galeria_fotos.foto_1)
   const [returnButton, setReturnButton] = useState(false);
 
   const getGold = (youTubeLink) => youTubeLink.split("/")[3]
@@ -85,7 +86,7 @@ export default function ArtistaIndv({ artista }){
           <center>
             <Tilt scale={1.05} gyroscope={true}>
             <Image 
-              src={artista.ACF.galeria_fotos.foto_1} 
+              src={artistPicture} 
               width={300}
               height={300}
               alt="artist image"
@@ -125,20 +126,16 @@ export default function ArtistaIndv({ artista }){
         </div>
         
         <ul className={styles.projects_container}>
-
-          {returnButton ? 
-            <li className={styles.return_button}>
-              <Link href={"#artist-desc"} >
+        {/* returnButton ? 
+              <Link href={"#artist-desc"} className={styles.return_button}>
                 <Image
                   alt="Botón de retorno"
                   width={45}
                   height={45}
-                  src={'/icons/Replay-button.png'}
+                  src={'/icons/Replay-button.svg'}
                 />
               </Link>
-            </li>
-            : null}
-
+            : null */}
           <li className={styles.project_title_container}>
             <h2 className={styles.project_title}>
               {artista.ACF.nombre_del_proyecto}

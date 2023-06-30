@@ -1,65 +1,3 @@
-/* import { useEffect, useRef } from 'react';
-
-const AudioWaveform = ({ src }) => {
-  const waveformRef = useRef(null);
-
-  useEffect(() => {
-    let WaveSurfer = null;
-    let TimelinePlugin = null;
-    let CursorPlugin = null;
-
-    const loadWavesurfer = async () => {
-      if (!WaveSurfer) {
-        WaveSurfer = await import('wavesurfer.js');
-      }
-
-      if (!TimelinePlugin) {
-        TimelinePlugin = await import('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js');
-      }
-
-      if (!CursorPlugin) {
-        CursorPlugin = await import('wavesurfer.js/dist/plugin/wavesurfer.cursor.min.js');
-      }
-
-      const wavesurfer = WaveSurfer.default.create({
-        container: waveformRef.current,
-        waveColor: 'violet',
-        progressColor: 'purple',
-        fetchParams: { mode: "no=cors" }
-      });
-
-      wavesurfer.load(src);
-
-      wavesurfer.on('ready', () => {
-        // Waveform is ready
-      });
-
-      // Add plugins if desired
-      wavesurfer.addPlugin(TimelinePlugin.default.create({ container: '#timeline' }));
-      wavesurfer.addPlugin(CursorPlugin.default.create({ showTime: true, opacity: 1 }));
-
-      // Clean up on component unmount
-      return () => {
-        wavesurfer.destroy();
-      };
-    };
-
-    // Check if running on the client-side
-    if (typeof window !== 'undefined') {
-      loadWavesurfer();
-    }
-  }, [src]);
-
-  return (
-    <div>
-      <div ref={waveformRef} />
-      <div id="timeline" />
-    </div>
-  );
-};
-
-export default AudioWaveform; */
-
 import React, { useState, useEffect, useRef } from 'react';
 import styles from "@/styles/audioPlayer/audioPlayer.module.css"
 import Image from 'next/image';
@@ -69,9 +7,18 @@ const AudioPlayer = ({ src }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [waveformWidth, setWaveformWidth] = useState(0);
+  const [wavePicture, setWavePicture] = useState("/backgrounds/waveform.png")
 
   const audioRef = useRef(null);
   const waveformRef = useRef(null);
+
+  useEffect(()=> {
+    if(window.innerWidth < 1050) {
+      setWavePicture("/backgrounds/waveformMobile.png")
+    } else {
+      setWavePicture("/backgrounds/waveform.png")
+    }
+  }, [])
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -137,51 +84,73 @@ const AudioPlayer = ({ src }) => {
     }
   };
 
+
+  function convertSecs(seconds) {return ((Math.round(seconds % 0x3C)).toString())}
+  function convertHrs(seconds) {return ((Math.floor(seconds / 0xE10)).toString())}
+  function convertMins(seconds) {return ((Math.floor(seconds / 0x3C ) % 0x3C).toString())}
+
   return (
     <>
-    <div className={styles.audio_player_container}>
-      <div className={styles.audio_player}>
-        <div className={styles.audio_waveform} style={{ paddingRight: waveformWidth + "%" }}></div>
-          <img 
-            src="/backgrounds/Imagen4.png"
-            width={800}
-            height={50} 
-            alt="Waveform" 
-            className={styles.waveform_image}
-            onClick={handleImageClick} 
-          />
-        <audio ref={audioRef} src={src}></audio>
-      </div>
-
-      <div className={styles.audio_controls}>
-
-        <button 
-          className={styles.play_pause} 
-          onClick={currentTime === duration ? handleReplay : handlePlayPause}>
-          { currentTime !== duration ? 
-            <Image
-              src={`/icons/${ isPlaying ? 'Pause-button' : 'Play-button'}.png`}
-              alt='Play-pause button'
-              height={50}
-              width={50}
-            /> : 
-            <Image
-              src={`/icons/Replay-button.svg`}
-              alt='Replay button'
-              height={50}
-              width={50}
+    <div className={styles.audio_player_all_container}>
+      <div className={styles.audio_player_container}>
+        <div className={styles.audio_player}>
+          <div className={styles.audio_waveform} style={{ paddingRight: waveformWidth + "%" }}></div>
+            <img 
+              src={wavePicture}
+              width={800}
+              height={50} 
+              alt="Waveform" 
+              className={styles.waveform_image}
+              onClick={handleImageClick} 
             />
-          }
+          <audio ref={audioRef} src={src}></audio>
+        </div>
+
+        <div className={styles.audio_controls}>
+
+          <button 
+            className={styles.play_pause} 
+            onClick={currentTime === duration ? handleReplay : handlePlayPause}>
+            { currentTime !== duration ? 
+              <Image
+                src={`/icons/${ isPlaying ? 'Pause-button' : 'Play-button'}.png`}
+                alt='Play-pause button'
+                height={50}
+                width={50}
+              /> : 
+              <Image
+                src={`/icons/Replay-button.svg`}
+                alt='Replay button'
+                height={50}
+                width={50}
+              />
+            }
+          </button>
+        </div>
+      </div>
+      <div className={styles.time_controls}>
+        <button className={styles.backward} onClick={handleBackward}>
+        <Image
+          src={'/icons/Backward-button.png'}
+          alt='Forward button'
+          width={20}
+          height={20}
+        /> 
+        <p>-5s</p>
+        </button>
+        <p className={styles.audio_time}>
+          {convertMins(currentTime)}:{convertSecs(currentTime)} / {convertMins(duration)}:{convertSecs(duration)} 
+        </p>
+        <button className={styles.forward} onClick={handleForward}>
+          <p>+5s</p>
+          <Image
+            src={'/icons/Forward-button.png'}
+            alt='Forward button'
+            width={20}
+            height={20}
+          />
         </button>
       </div>
-    </div>
-    <div className={styles.time_controls}>
-        <button className={styles.backward} onClick={handleBackward}>
-          -5s
-        </button>
-        <button className={styles.forward} onClick={handleForward}>
-          +5s
-        </button>
     </div>
     </>
   );

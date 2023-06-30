@@ -39,7 +39,8 @@
   position: relative;
 }
 
-.artist_desc_container, .projects_container li {
+.artist_desc_container,
+.projects_container li {
   padding: 20px;
 }
 
@@ -126,9 +127,11 @@
   gap: 10px;
 }
 
-.artist_networks .artist_network:visited, .artist_network:link, .artist_network:focus, .artist_network:active {
-  color: var(--purple) !important; 
-
+.artist_networks .artist_network:visited,
+.artist_network:link,
+.artist_network:focus,
+.artist_network:active {
+  color: var(--purple) !important;
 }
 
 .email_container {
@@ -142,10 +145,10 @@
   font-size: 16px;
 }
 
-li.return_button {
+.return_button {
   z-index: 10;
   position: sticky;
-  right: -6px;
+  bottom: 10px;
 }
 
 .project_title_container {
@@ -170,10 +173,10 @@ li.return_button {
   background-color: var(--light-black-opacity);
 }
 
-.visual_project_container, .sound_project_container {
+.visual_project_container,
+.sound_project_container {
   height: -webkit-fill-available;
 }
-
 
 .visual_desc {
   font-size: 20px;
@@ -185,7 +188,9 @@ li.return_button {
   font-size: 20px;
 }
 
-.artist_desc, .visual_desc, .sound_desc {
+.artist_desc,
+.visual_desc,
+.sound_desc {
   font-weight: 500;
   color: var(--white);
 }
@@ -198,14 +203,15 @@ li.return_button {
 
 @media only screen and (max-width: 1050px) {
   .portfolio_container {
-    padding: 0; 
+    padding: 0;
     flex-direction: column;
     text-align: center;
     margin: 20px;
   }
-  .artist_desc_container, .artist_desc_auxiliar_container {
+  .artist_desc_container,
+  .artist_desc_auxiliar_container {
     width: 100%;
-    margin: 0
+    margin: 0;
   }
 
   .artist_tags {
@@ -222,6 +228,9 @@ li.return_button {
 
   .projects_container {
     width: 100%;
+    height: fit-content;
+    position: relative; 
+    margin-top: 20px ;
   }
 
   .projects_container li {
@@ -235,10 +244,11 @@ li.return_button {
     font-size: 15px;
     text-align: center;
   }
-  .visual_desc, .sound_desc {
+  .visual_desc,
+  .sound_desc {
     font-size: 15px;
   }
-  
+
   .visual_desc div iframe {
     min-height: 300px;
   }
@@ -248,4 +258,6 @@ li.return_button {
     font-size: 25px;
     text-decoration: underline;
   }
+
+  /* Estilos para el botón de retorno */
 }

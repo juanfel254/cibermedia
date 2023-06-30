@@ -83,7 +83,11 @@ ul, li {
 .support-logo {
   width: 20vw;
   height: 16vw;
+}
 
+.support-kennedy-logo {
+  width: 40vw;
+    height: 16vw;
 }
 
 .contact-logos {
@@ -525,6 +529,14 @@ Animation keyframes
 @media only screen and (max-width: 1100px) {
   .open-overlay {
     margin-left: 86vw;
+  }
+  .support-logo {
+    width: 50vw;
+    height: 50vw;
+  }
+  .support-kennedy-logo {
+    width: 58vw;
+    
   }
 }
 

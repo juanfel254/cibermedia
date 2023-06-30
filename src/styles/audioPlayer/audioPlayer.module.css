@@ -1,17 +1,23 @@
+.audio_player_all_container {
+  background-color: var(--black);
+  padding: 20px 20px 20px 0;
+  border-radius: 25px;
+}
+
 .audio_player_container {
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .audio_player {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 20px;
   flex-direction: row;
   background-color: var(--white);
-  width: 51vw;
+  width: 100%;
 }
 
 .waveform_image {
@@ -19,7 +25,7 @@
   z-index: 5;
   position: absolute;
   width: 65.2vw;
-  padding-right: 14px;
+  padding-right: 34px;
   /* max-width: 62.2vw; */
   margin-right: 26px;
   width: 100%;
@@ -41,9 +47,11 @@
   flex-direction: row;
 }
 
-.play_pause, .replay {
-  padding: 10px;
-  font-size: 16px;
+.play_pause {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  cursor: pointer;
 }
 
 .time_controls {
@@ -51,4 +59,59 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 0;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.time_controls button {
+  background-color: var(--light-black-opacity);
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+  font-weight: bold;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  gap: 5px;
+  width: 80px;
+}
+
+.time_controls button:hover {
+  box-shadow: 0px 0px 12px 1px var(--yellow);
+}
+
+.time_controls button p {
+  margin: 5px;
+}
+
+.audio_time {
+  text-align: center;
+  margin: 0
+}
+
+@media only screen and (max-width: 1050px) {
+  .waveform_image {
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .time_controls {
+    gap: 15px;
+    margin-top: 20px;
+    margin-left: 11px;
+    width: 100%;
+  }
+  .time_controls button {
+    font-size: 14px;
+    width: 80px;
+  }
+  .time_controls button Image {
+    width: 15px;
+    height: 15px;
+  }
 }
