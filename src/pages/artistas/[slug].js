@@ -130,7 +130,7 @@ export default function ArtistaIndv({ artista }) {
               {"<<"}
             </Link>
             <center>
-              <Tilt scale={1.05} gyroscope={true}>
+              <Tilt scale={1.05} gyroscope={true} tiltMaxAngleX={0}>
                 {photoKeys.map((key, index) => (
                   <img
                     key={key}
