@@ -23,6 +23,23 @@ export default function KennedyMap() {
   const [filtered, setFiltered] = useState(null);
   let [clicks, setClicks] = useState(false);
 
+  const [aboutUsInfo, setAboutUsInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url =
+          "https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/nosotros";
+        const res = await fetch(url);
+        const data = await res.json();
+        setAboutUsInfo(data[0]);
+      } catch {
+        console.log("API fetch error: " + error);
+      }
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -189,7 +206,7 @@ export default function KennedyMap() {
             ) : null
           ) : (
             <h3 className={styles.message}>
-              Haz click en el mapa para conocer más detalles
+              {aboutUsInfo && aboutUsInfo.ACF.mensaje_mapa}
             </h3>
           )}
         </div>
