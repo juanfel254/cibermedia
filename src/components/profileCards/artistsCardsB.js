@@ -49,11 +49,12 @@ export default function ArtistsCardsB({ data }) {
                     {member.ACF.nombre_artista}
                   </h3>
                   {member.ACF.perfil.map((skill, index) => {
-                    return (
-                      <p key={index} className={styles.member_description}>
-                        {skill}
-                      </p>
-                    );
+                    if (skill !== "Colectivo Cultural Cibermedia" && index < 4)
+                      return (
+                        <p key={index} className={styles.member_description}>
+                          {skill}
+                        </p>
+                      );
                   })}
                 </div>
               </Link>

@@ -1,10 +1,12 @@
 .cards_container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   text-align: center;
   margin: 20px 0 200px 0;
+  gap: 23vw;
+  flex-wrap: wrap;
 }
 
 .card_container {
@@ -37,6 +39,7 @@
   .cards_container {
     flex-direction: column;
     margin-top: 40px;
+    gap: 68vw;
   }
   .card_container {
     width: 71vw;
@@ -48,6 +51,7 @@
   .cards_container {
     flex-direction: column;
     margin-top: 40px;
+    gap: 42vw;
   }
   .card_container {
     width: 35vw;
