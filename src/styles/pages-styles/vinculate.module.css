@@ -29,6 +29,10 @@
   margin-bottom: 40px;
 }
 
+.button_container {
+  width: 100%;
+}
+
 .contact_button {
   width: 100%;
   text-align: center;
@@ -39,6 +43,7 @@
   text-decoration: none;
   color: var(--purple);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .contactus_main_container {
