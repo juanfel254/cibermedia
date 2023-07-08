@@ -111,7 +111,7 @@ const AudioPlayer = ({ src }) => {
           <button 
             className={styles.play_pause} 
             onClick={currentTime === duration ? handleReplay : handlePlayPause}>
-            { currentTime !== duration ? 
+            { currentTime !== duration || currentTime === 0? 
               <Image
                 src={`/icons/${ isPlaying ? 'Pause-button' : 'Play-button'}.png`}
                 alt='Play-pause button'

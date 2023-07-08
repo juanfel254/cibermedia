@@ -73,14 +73,14 @@ export default function Vinculate() {
                 <li>
                   <h1 className="main-title">Haz Parte o Actualiza tu perfil</h1>
                 </li>
-                {data ? <li className={styles.vinculate_text}><p>{data.ACF.texto_descriptivo_contacto}</p></li> : ""}
+{/*                 {data ? <li className={styles.vinculate_text}><p>{data.ACF.texto_descriptivo_contacto}</p></li> : ""} */}
                 <ul className={styles.buttons_container}>
                   <Link target="_blank" href={data ? data.ACF.botones_contacto.boton_1.url: ""} className={styles.contact_button} >
                     {data ? data.ACF.botones_contacto.boton_1.title : ""}
                   </Link>
-                  <Link target="_blank" href={data ? data.ACF.botones_contacto.boton_2.url : ""} className={styles.contact_button}>
+{                  <Link target="_blank" href={data ? data.ACF.botones_contacto.boton_2.url : ""} className={styles.contact_button}>
                   {data ? data.ACF.botones_contacto.boton_2.title : ""}
-                  </Link>
+                  </Link>}
                 </ul>
                 <li>
                   <h1 className="main-title">¡Pongámonos en Contacto!</h1>
