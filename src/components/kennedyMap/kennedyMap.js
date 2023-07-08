@@ -1,9 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import React, { useRef, useEffect, useState } from "react";
+import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import ArtistsCardsA from "@/components/profileCards/artistsCardsA";
-import styles from '@/styles/kennedyMap/kennedyMap.module.css';
+import styles from "@/styles/kennedyMap/kennedyMap.module.css";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tbzJydGt4NXZ1In0.WkzTOoZyMsPBNymYAJzCdw';
+mapboxgl.accessToken =
+  "pk.eyJ1IjoianVhbmZlbDI1NCIsImEiOiJjbGlkYnpsdHYwMWUxM21tbzJydGt4NXZ1In0.WkzTOoZyMsPBNymYAJzCdw";
 
 export default function KennedyMap() {
   const lngKennedy = -74.1531818;
@@ -15,7 +16,7 @@ export default function KennedyMap() {
   const [lng, setLng] = useState(lngKennedy);
   const [lat, setLat] = useState(latKennedy);
   const [zoom, setZoom] = useState(initialZoom);
-  const popup = useRef(new mapboxgl.Popup({ backgroundColor: '#2D1A47' }));
+  const popup = useRef(new mapboxgl.Popup({ backgroundColor: "#2D1A47" }));
 
   const [artists, setArtists] = useState("");
   const [upzSelected, setUpzSelected] = useState("");
@@ -25,11 +26,13 @@ export default function KennedyMap() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100');
+        const res = await fetch(
+          "https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?per_page=100"
+        );
         const data = await res.json();
         setArtists(data);
       } catch (error) {
-        console.log('Error al obtener los datos de la API:', error);
+        console.log("Error al obtener los datos de la API:", error);
       }
     }
     fetchData();
@@ -40,10 +43,10 @@ export default function KennedyMap() {
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/juanfel254/clijutcu700v001p71axde6d0',
+      style: "mapbox://styles/juanfel254/clijutcu700v001p71axde6d0",
       center: [lng, lat],
       zoom: zoom,
-      interactive: false
+      interactive: false,
     });
 
     if (window.innerWidth < 640) {
@@ -55,64 +58,66 @@ export default function KennedyMap() {
     let hoveredPolygonId = null;
     let clickeUPZ = null;
 
-    map.current.on('load', () => {
-      map.current.addSource('UPZs', {
-        type: 'geojson',
-        data: '/upzs-kennedy.geojson',
-        generateId: true
+    map.current.on("load", () => {
+      map.current.addSource("UPZs", {
+        type: "geojson",
+        data: "/upzs-kennedy.geojson",
+        generateId: true,
       });
 
       map.current.addLayer({
-        id: 'UPZs-fills',
-        type: 'fill',
-        source: 'UPZs',
+        id: "UPZs-fills",
+        type: "fill",
+        source: "UPZs",
         layout: {},
         paint: {
-          'fill-color': '#FEEA27',
-          'fill-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hover'], false],
+          "fill-color": "#FEEA27",
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
             0.8,
-            0.1
-          ]
-        }
+            0.1,
+          ],
+        },
       });
 
       map.current.addLayer({
-        id: 'UPZs-outlines',
-        type: 'line',
-        source: 'UPZs',
+        id: "UPZs-outlines",
+        type: "line",
+        source: "UPZs",
         layout: {},
         paint: {
-          'line-color': '#FEEA27',
-          'line-blur': 20,
-          'line-width': 5
-        }
+          "line-color": "#FEEA27",
+          "line-blur": 20,
+          "line-width": 5,
+        },
       });
     });
 
-    map.current.on('mouseenter', 'UPZs-fills', () => {
-      map.current.getCanvas().style.cursor = 'pointer';
+    map.current.on("mouseenter", "UPZs-fills", () => {
+      map.current.getCanvas().style.cursor = "pointer";
     });
 
-    map.current.on('mousemove', 'UPZs-fills', (e) => {
+    map.current.on("mousemove", "UPZs-fills", (e) => {
       if (e.features.length > 0) {
         if (hoveredPolygonId !== null) {
           map.current.setFeatureState(
-            { source: 'UPZs', id: hoveredPolygonId },
+            { source: "UPZs", id: hoveredPolygonId },
             { hover: false }
           );
         }
         hoveredPolygonId = e.features[0].id;
         map.current.setFeatureState(
-          { source: 'UPZs', id: hoveredPolygonId },
+          { source: "UPZs", id: hoveredPolygonId },
           { hover: true }
         );
 
         if (clickeUPZ !== e.features[0].properties.nom_upz) {
-          popup.current.setLngLat(e.lngLat).setHTML(
-            `<h2 className="secondary-title popup-title">${e.features[0].properties.nom_upz}</h2>`
-          );
+          popup.current
+            .setLngLat(e.lngLat)
+            .setHTML(
+              `<h2 className="secondary-title popup-title">${e.features[0].properties.nom_upz}</h2>`
+            );
 
           if (!popup.current.isOpen()) {
             popup.current.addTo(map.current);
@@ -123,13 +128,15 @@ export default function KennedyMap() {
       }
     });
 
-    map.current.on('click', 'UPZs-fills', (e) => {
+    map.current.on("click", "UPZs-fills", (e) => {
       if (e.features.length > 0) {
         const feature = e.features[0];
         const coordinates = e.lngLat;
-        new mapboxgl.Popup({ backgroundColor: '#2D1A47' })
+        new mapboxgl.Popup({ backgroundColor: "#2D1A47" })
           .setLngLat(coordinates)
-          .setHTML(`<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`)
+          .setHTML(
+            `<h2 className="secondary-title popup-title">${feature.properties.nom_upz}</h2>`
+          )
           .addTo(map.current);
         setClicks(true);
         clickeUPZ = feature.properties.nom_upz;
@@ -137,11 +144,11 @@ export default function KennedyMap() {
       }
     });
 
-    map.current.on('mouseleave', 'UPZs-fills', () => {
-      map.current.getCanvas().style.cursor = '';
+    map.current.on("mouseleave", "UPZs-fills", () => {
+      map.current.getCanvas().style.cursor = "";
       if (hoveredPolygonId !== null) {
         map.current.setFeatureState(
-          { source: 'UPZs', id: hoveredPolygonId },
+          { source: "UPZs", id: hoveredPolygonId },
           { hover: false }
         );
       }
@@ -151,8 +158,8 @@ export default function KennedyMap() {
   }, [lng, lat, zoom]);
 
   function capitaliceWords(phrase) {
-    if (phrase === 'AMERICAS') {
-      return 'Américas';
+    if (phrase === "AMERICAS") {
+      return "Américas";
     }
     return phrase.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   }
@@ -160,9 +167,11 @@ export default function KennedyMap() {
   useEffect(() => {
     if (artists) {
       let filteredArtists = artists;
-      if (upzSelected !== '') {
+      if (upzSelected !== "") {
         filteredArtists = artists.filter((artist) =>
-          upzSelected !== '' ? artist.ACF.upz.includes(capitaliceWords(upzSelected)) : true
+          upzSelected !== ""
+            ? artist.ACF.upz.includes(capitaliceWords(upzSelected))
+            : true
         );
       }
       setFiltered(filteredArtists);
@@ -174,7 +183,15 @@ export default function KennedyMap() {
       <div className={styles.artists_map_container}>
         <div ref={mapContainer} className={styles.map_container} />
         <div className={`${styles.artists_container}`}>
-          {clicks ? filtered ? <ArtistsCardsA artistas={filtered} /> : null : <h3 className={styles.message}>Haz click en el mapa para conocer más detalles</h3>}
+          {clicks ? (
+            filtered ? (
+              <ArtistsCardsA artistas={filtered} />
+            ) : null
+          ) : (
+            <h3 className={styles.message}>
+              Haz click en el mapa para conocer más detalles
+            </h3>
+          )}
         </div>
       </div>
     </div>
