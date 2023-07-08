@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Head from "next/head";
-import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import styles from "@/styles/pages-styles/vinculate.module.css";
+import ContactButtons from "@/components/contactButtons/contactButtons";
 
 export default function Vinculate() {
   const form = useRef();
@@ -90,24 +90,7 @@ export default function Vinculate() {
                     perfil
                   </h1>
                 </li>
-                <ul className={styles.buttons_container}>
-                  <Link
-                    target="_blank"
-                    href={data ? data.ACF.botones_contacto.boton_1.url : ""}
-                    className={styles.contact_button}
-                  >
-                    {data ? data.ACF.botones_contacto.boton_1.title : ""}
-                  </Link>
-                  {
-                    <Link
-                      target="_blank"
-                      href={data ? data.ACF.botones_contacto.boton_2.url : ""}
-                      className={styles.contact_button}
-                    >
-                      {data ? data.ACF.botones_contacto.boton_2.title : ""}
-                    </Link>
-                  }
-                </ul>
+                <ContactButtons data={data} />
                 <li>
                   <h1 className="main-title">
                     ¿Tienes alguna duda? ¡Pongámonos en Contacto!
