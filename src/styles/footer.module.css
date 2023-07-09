@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   text-align: center;
-  background-color: var(--yellow); 
+  background-color: var(--yellow);
   padding: 20px 0;
   color: var(--purple);
 }
@@ -35,4 +35,22 @@
 
 .second_container .email_container {
   padding-bottom: 10px;
+}
+
+.author_container {
+  margin: 40px 0 0 0;
+  font-size: 13px;
+  background-color: transparent;
+}
+
+.author_link {
+  color: var(--purple);
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.author_link:hover {
+  font-size: 110%;
+  font-weight: 800;
+  transition: 0.5s;
 }
