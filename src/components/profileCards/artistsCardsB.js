@@ -1,20 +1,66 @@
-import styles from "@/styles/profileCards/artistCardB.module.css"
+import styles from "@/styles/profileCards/artistCardB.module.css";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Tilt from "react-parallax-tilt";
 
-export default function ArtistsCardsB() {
+export default function ArtistsCardsB({ data }) {
+  const [members, setMembers] = useState(null);
 
-  const members = ["Melisa Cobo", "Jeison Xxxx", "Juan Xxxx", "Santiago Xxxx"];
+  const slugs = data.ACF.miembros_colectivo.map(
+    (url) => url.split("/").slice(-2, -1)[0]
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const promises = slugs.map(async (slug) => {
+        const url = `https://admin.ciberespacioartistico.com/index.php/wp-json/wp/v2/portafolio?slug=${slug}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data[0];
+      });
+      setMembers(await Promise.all(promises));
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <ul className={styles.cards_container}>
-      {members.map((member) => (
-          <li key={member} className={styles.card_container}>
-          <p className={styles.picture_container}>Foto</p>
-          <ul>
-            <li><h3 className={`font-family-compress ${styles.artist_name}`}>{member}</h3></li>
-            <li><p className={styles.artist_description}>{`Sinopsis de ${member}`}</p></li>
-          </ul>
-        </li>
-        ))}
-    </ul>
-  )
+    <div className={styles.cards_container}>
+      {members
+        ? members.map((member, index) => (
+            <Tilt
+              key={index}
+              className={styles.tilt_container}
+              scale={0.9}
+              gyroscope={true}
+              tiltMaxAngleX={0}
+            >
+              <Link
+                className={`my-link ${styles.card_container}`}
+                href={`/artistas/${member.slug}`}
+              >
+                <img
+                  className={styles.member_picture}
+                  alt={`Foto de ${member.ACF.nombre_artista}`}
+                  src={member.ACF.galeria_fotos.foto_1}
+                />
+                <div className={styles.member_description_container}>
+                  <h3 className={styles.member_name}>
+                    {member.ACF.nombre_artista}
+                  </h3>
+                  {member.ACF.perfil.map((skill, index) => {
+                    if (skill !== "Colectivo Cultural Cibermedia" && index < 4)
+                      return (
+                        <p key={index} className={styles.member_description}>
+                          {skill}
+                        </p>
+                      );
+                  })}
+                </div>
+              </Link>
+            </Tilt>
+          ))
+        : null}
+    </div>
+  );
 }

@@ -28,7 +28,7 @@
   flex-direction: row;
   justify-content: centers;
   height: fit-content;
-  overflow:unset;
+  overflow: unset;
 }
 
 .map_container {
@@ -50,14 +50,14 @@
 
 @media only screen and (max-width: 640px) {
   .message {
-    font-size: 12px;
+    font-size: 20px;
     text-align: center;
   }
   .artists_map_container {
     flex-direction: column;
     gap: 30px;
   }
-  .map_container {  
+  .map_container {
     width: 325px;
     height: 325px;
     border-radius: 45%;
@@ -91,20 +91,20 @@
   .artists_container ul li ul {
     display: block;
     height: 100%;
-    overflow:hidden;
+    overflow: hidden;
     padding-right: 0px;
     margin: 0;
   }
 }
 
 @media only screen and (min-width: 641px) and (max-width: 1200px) {
-  .map_container {  
+  .map_container {
     width: 620px;
     height: 620px;
     border-radius: 45%;
   }
   .message {
-    font-size: 12px;
+    font-size: 35px;
   }
   .artists_map_container {
     flex-direction: column;
@@ -117,7 +117,7 @@
   .artists_container ul li ul {
     display: flex;
     height: 100%;
-    overflow:hidden;
+    overflow: hidden;
     padding-right: 0px;
     justify-content: center;
     align-items: center;
@@ -138,7 +138,7 @@
   .artists_container div div {
     gap: 0;
     flex-direction: none;
-    overflow:unset;
+    overflow: unset;
     flex-direction: row;
     align-items: center;
   }

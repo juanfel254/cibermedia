@@ -50,7 +50,9 @@ export default function ArtistaIndv({ artista }) {
       </Head>
       <div className={`${styles.portfolio_container} main-container`}>
         <ArtistInfo artista={artista ? artista : null} />
-        <ArtistProjects artista={artista ? artista : null} />
+        {artista.ACF.portafolio_de_proyectos ? (
+          <ArtistProjects artista={artista ? artista : null} />
+        ) : null}
       </div>
     </>
   );

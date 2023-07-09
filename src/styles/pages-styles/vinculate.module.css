@@ -1,49 +1,63 @@
-.logo_container {
-  display: flex;
-  justify-content: center;
-}
-
 .vinculate_text {
   text-align: center;
   font-size: 25px;
 }
 
-.main_logo {
-  width: 80%;
-  height: fit-content;
-  padding: 0px;
+.logo_container {
+  float: left;
+  width: 50%;
+  height: 100vh; /* Ajusta la altura según tus necesidades */
+  position: sticky;
+  top: 0;
 }
 
-.contactus_main_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.main_logo {
+  width: 42vw;
+  position: -webkit-sticky;
+  position: sticky;
+  height: 750px;
+  z-index: 15;
+  top: 46px;
 }
 
 .buttons_container {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 50px;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.button_container {
+  width: 100%;
 }
 
 .contact_button {
-  width: 40%;
+  width: 100%;
   text-align: center;
   background-color: var(--yellow);
   font-family: Compress;
   font-size: 35px;
-  padding: 10px 20px;
+  padding: 15px;
   text-decoration: none;
   color: var(--purple);
-  border-radius: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.contactus_main_container {
+  height: 100%;
 }
 
 .contactus_main_container .main_container_child {
   width: 50%;
+  margin-left: 47vw;
 }
 
 .contactus_main_container h1 {
   margin: 0 0 40px 0;
+  font-size: 3.2vw;
 }
 
 .form_container {
@@ -52,17 +66,18 @@
   margin-bottom: 40px;
 }
 
-.form_container input, .message_input {
+.form_container input,
+.message_input {
   font-size: 20px;
   font-family: Rubik;
   margin: 15px 0;
   padding: 10px;
 }
 
-.message_input { 
-  resize: vertical; 
-  max-height: 300px; 
-  min-height: 150px; 
+.message_input {
+  resize: vertical;
+  max-height: 300px;
+  min-height: 150px;
 }
 
 .submit_button {
@@ -92,7 +107,24 @@
 }
 
 @media only screen and (max-width: 600px) {
-  /* For mobile phones */
+  .logo_container {
+    height: auto;
+    width: 100%;
+    position: relative;
+    top: 0;
+    text-align: center;
+    z-index: 0;
+    margin: 20px;
+  }
+
+  .main_logo {
+    width: 100%;
+    height: 80vw;
+    z-index: 0;
+    position: relative;
+    top: 0;
+  }
+
   .contactus_main_container {
     display: flex;
     flex-direction: column;
@@ -101,13 +133,16 @@
 
   .contactus_main_container .main_container_child {
     width: 100%;
+    margin: 0;
   }
 
   .contactus_main_container h1 {
     margin: 0 0 20px 0;
+    font-size: 7vw;
   }
 
-  .form_container input, .message_input {
+  .form_container input,
+  .message_input {
     font-size: 16px;
   }
   .buttons_container {
@@ -117,5 +152,6 @@
   }
   .contact_button {
     width: 100%;
+    font-size: 25px;
   }
 }
