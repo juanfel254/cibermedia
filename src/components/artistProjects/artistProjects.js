@@ -24,8 +24,6 @@ export default function ArtistProjects({ artista }) {
     fetchData();
   }, []);
 
-  console.log(projects);
-
   return (
     <ul className={styles.projects_container}>
       {projects
