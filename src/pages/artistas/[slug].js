@@ -16,7 +16,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -29,6 +29,7 @@ export const getStaticProps = async (context) => {
   const data = await res.json();
   return {
     props: { artista: data[0] },
+    revalidate: 86400,
   };
 };
 
