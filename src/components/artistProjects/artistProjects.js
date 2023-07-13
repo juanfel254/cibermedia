@@ -1,7 +1,8 @@
-import styles from "@/styles/pages-styles/artista.module.css";
+import { useEffect, useState } from "react";
 import VideoProject from "./videoProject";
 import AudioProject from "./audioProject";
-import { useEffect, useState } from "react";
+import OtherProjects from "./otherProjects";
+import styles from "@/styles/pages-styles/artista.module.css";
 
 export default function ArtistProjects({ artista }) {
   const [projects, setProjects] = useState(null);
@@ -45,6 +46,13 @@ export default function ArtistProjects({ artista }) {
             );
           })
         : "Cargando..."}
+      {artista.ACF.otros_proyectos ? (
+        Object.values(artista.ACF.otros_proyectos).some(
+          (value) => value !== ""
+        ) ? (
+          <OtherProjects projectsInfo={artista.ACF.otros_proyectos} />
+        ) : null
+      ) : null}
     </ul>
   );
 }

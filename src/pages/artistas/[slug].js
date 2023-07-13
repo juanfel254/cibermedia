@@ -29,7 +29,7 @@ export const getStaticProps = async (context) => {
   const data = await res.json();
   return {
     props: { artista: data[0] },
-    revalidate: 86400,
+    revalidate: 3600,
   };
 };
 
