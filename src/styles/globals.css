@@ -1,10 +1,10 @@
 :root {
   --black: #1a1515;
-  --white: #FFFFFF;
-  --purple: #2D1A47;
-  --yellow: #FEEA27;
+  --white: #ffffff;
+  --purple: #2d1a47;
+  --yellow: #feea27;
   --light-blue: #38ff98;
-  --light-black-opacity: rgba(29, 26, 37, .8);
+  --light-black-opacity: rgba(29, 26, 37, 0.8);
 }
 
 @font-face {
@@ -31,7 +31,7 @@ main {
   font-size: 30px;
 }
 
-.main-container{
+.main-container {
   padding: 40px 60px;
 }
 
@@ -44,7 +44,8 @@ main {
   z-index: -1;
 }
 
-ul, li {
+ul,
+li {
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -61,7 +62,10 @@ ul, li {
   cursor: pointer;
 }
 
-.my-link:visited, .my-link:link, .my-link:focus, .my-link:active {
+.my-link:visited,
+.my-link:link,
+.my-link:focus,
+.my-link:active {
   color: var(--purple);
 }
 
@@ -87,7 +91,7 @@ ul, li {
 
 .support-kennedy-logo {
   width: 40vw;
-    height: 16vw;
+  height: 16vw;
 }
 
 .contact-logos {
@@ -134,13 +138,21 @@ h1.error404-title {
   font-family: compress;
   letter-spacing: 1px;
   font-size: 18px;
-  box-shadow: 0px 0px 40px 5px rgba(254,234,39,0.75);
+  box-shadow: 0px 0px 40px 5px rgba(254, 234, 39, 0.75);
 }
 
-.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {border-left-color: var(--yellow);}
-.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {border-right-color: var(--yellow);}
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {border-top-color: var(--yellow);}
-.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {border-bottom-color: var(--yellow);}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: var(--yellow);
+}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: var(--yellow);
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: var(--yellow);
+}
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+  border-bottom-color: var(--yellow);
+}
 
 .mapboxgl-popup-close-button {
   display: none;
@@ -171,7 +183,6 @@ h1.error404-title {
   color: var(--purple);
   z-index: 10;
 }
-
 
 /* ====================================
 Navigation 
@@ -287,11 +298,15 @@ nav li a:hover:after {
   opacity: 1;
 }
 
-nav li:nth-of-type(1), nav li:nth-of-type(4) a:before, nav li:nth-of-type(2) a:before {
+nav li:nth-of-type(1),
+nav li:nth-of-type(4) a:before,
+nav li:nth-of-type(2) a:before {
   background-color: var(--black);
 }
 
-nav li:nth-of-type(2), nav li:nth-of-type(3) a:before, nav li:nth-of-type(1) a:before {
+nav li:nth-of-type(2),
+nav li:nth-of-type(3) a:before,
+nav li:nth-of-type(1) a:before {
   background-color: var(--yellow);
 }
 nav li:nth-of-type(3) {
@@ -301,15 +316,19 @@ nav li:nth-of-type(4) {
   background-color: var(--light-blue);
 }
 
-nav li:nth-of-type(1) a, nav li:nth-of-type(3) a, nav li:nth-of-type(1) a:after, nav li:nth-of-type(3) a:after {
+nav li:nth-of-type(1) a,
+nav li:nth-of-type(3) a,
+nav li:nth-of-type(1) a:after,
+nav li:nth-of-type(3) a:after {
   color: var(--yellow);
 }
 
-nav li:nth-of-type(2) a, nav li:nth-of-type(4) a, nav li:nth-of-type(2) a:after, nav li:nth-of-type(4) a:after {
+nav li:nth-of-type(2) a,
+nav li:nth-of-type(4) a,
+nav li:nth-of-type(2) a:after,
+nav li:nth-of-type(4) a:after {
   color: var(--black);
 }
-
-
 
 .slide-in-nav-item-delay-0 {
   animation: slide-in-nav-item 0.4s linear 1 0.1s both;
@@ -536,10 +555,21 @@ Animation keyframes
   }
   .support-kennedy-logo {
     width: 58vw;
-    
   }
 }
 
+/* Gallery carousel aditional styles */
+
+.gallery-carousel div div ul {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.gallery-carousel div ul {
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
 
 @media only screen and (max-width: 640px) {
   .text-centered {
@@ -548,7 +578,8 @@ Animation keyframes
   .main-container {
     padding: 30px;
   }
-  h1.main-title, h2.secondary-title {
+  h1.main-title,
+  h2.secondary-title {
     margin: 0 0 10px 0;
   }
   h1.main-title {
@@ -565,7 +596,7 @@ Animation keyframes
     font-size: 3.85vw;
     line-height: 3.9vw;
   }
-  .header-logo{
+  .header-logo {
     width: 12vw;
     height: 22vw;
   }
@@ -591,7 +622,6 @@ Animation keyframes
   nav li a:before {
     width: 15px;
   }
-
 }
 
 .audio-player {
@@ -600,52 +630,48 @@ Animation keyframes
 }
 
 @media only screen and (min-width: 1100px) {
-  
-/* width */
-::-webkit-scrollbar {
-  width: 12px;
-}
+  /* width */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--yellow);
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--yellow);
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--white);
-}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--white);
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
-@media only screen and (mix-width: 1100px) {
+  @media only screen and (mix-width: 1100px) {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--yellow);
+    }
 
-}
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--white);
+      border-radius: 50px;
+    }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--yellow);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--white);
-  border-radius: 50px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} 
-} 
-
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -666,4 +692,4 @@ Animation keyframes
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-} 
+}

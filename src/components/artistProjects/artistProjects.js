@@ -3,6 +3,8 @@ import VideoProject from "./videoProject";
 import AudioProject from "./audioProject";
 import OtherProjects from "./otherProjects";
 import styles from "@/styles/pages-styles/artista.module.css";
+import GaleriaProject from "./galleryProject";
+import GalleryProject from "./galleryProject";
 
 export default function ArtistProjects({ artista }) {
   const [projects, setProjects] = useState(null);
@@ -41,6 +43,9 @@ export default function ArtistProjects({ artista }) {
                 ) : null}
                 {project.ACF.audio ? (
                   <AudioProject projectInfo={project} />
+                ) : null}
+                {project.ACF.galeria_de_fotos ? (
+                  <GalleryProject projectInfo={project} />
                 ) : null}
               </li>
             );
