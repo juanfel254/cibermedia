@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import VideoProject from "./videoProject";
 import AudioProject from "./audioProject";
 import OtherProjects from "./otherProjects";
-import styles from "@/styles/pages-styles/artista.module.css";
-import GaleriaProject from "./galleryProject";
 import GalleryProject from "./galleryProject";
+import styles from "@/styles/pages-styles/artista.module.css";
 
 export default function ArtistProjects({ artista }) {
   const [projects, setProjects] = useState(null);
