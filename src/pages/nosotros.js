@@ -22,8 +22,6 @@ export default function Nosotros() {
     fetchData();
   }, []);
 
-  console.log(aboutUsInfo);
-
   return (
     <>
       <Head>

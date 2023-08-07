@@ -7,8 +7,6 @@ export default function GalleryProject({ projectInfo }) {
     .filter((key) => projectInfo.ACF.galeria_de_fotos[key] !== false)
     .map((key) => ({ src: projectInfo.ACF.galeria_de_fotos[key] }));
 
-  console.log(galleryUrls.length);
-
   return (
     <>
       {galleryUrls.length !== 0 ? (
